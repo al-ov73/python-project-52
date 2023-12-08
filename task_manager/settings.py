@@ -39,7 +39,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
-    'render.apps.RenderConfig',
+    # 'render.apps.RenderConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +47,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'task_manager',
+    'task_manager.users',
 ]
+
+AUTH_USER_MODEL = 'users.User'
+ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.UserForm'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +84,9 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/"
+
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 
@@ -94,6 +103,12 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
+
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+    )
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,7 +129,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru' #'en-us'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -127,7 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'render/templates/src']
+STATICFILES_DIRS = [BASE_DIR / 'task_manager/templates/src']
 
 
 # Following settings only make sense on production and may break development environments.

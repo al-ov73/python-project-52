@@ -48,12 +48,19 @@
       <li class="nav-item active">
         <a class="nav-link" href="/users/">{% trans 'Users' %}<span class="sr-only"></span></a>
       </li>
+
+        {% if request.user.is_authenticated %}
+<li class="nav-link"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+        {% else %}
       <li class="nav-item active">
         <a class="nav-link" href="/login/">{% trans 'Login' %}<span class="sr-only"></span></a>
       </li>
               <li class="nav-item active">
         <a class="nav-link" href="/users/create/">{% trans 'Registration' %}<span class="sr-only"></span></a>
       </li>
+{% endif %}
+
+
     </ul>
 
   </div>
@@ -66,6 +73,15 @@
 <h1 class="my-4"></h1>
 <main role="main">
     <div class="container">
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 
     {% block content %}
 
