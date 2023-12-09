@@ -1,6 +1,10 @@
 start:
 	python manage.py runserver
 
+test:
+	python manage.py test
+
+
 locale1:
 	django-admin makemessages --all
 
