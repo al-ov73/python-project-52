@@ -1,0 +1,17 @@
+{% extends "basic.html" %}
+
+
+{% block content %}
+{% load i18n %}
+      <h1 class="my-4">
+
+Удаление задачи
+         </h1>
+<p>Вы уверены, что хотите удалить {{ name }}?</p>
+
+          <form action="{% url 'task_delete' pk %}" method="post">
+            {% csrf_token %}
+          <input type="submit" value="Удалить">
+        </form>
+
+{% endblock %}

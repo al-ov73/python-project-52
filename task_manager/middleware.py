@@ -10,9 +10,9 @@ class RequestTimeMiddleware:
 
        response = self.get_response(request)
 
-       print(
-           f'Продолжительность запроса {request.path} - '
-           f'{time.monotonic() - timestamp:.3f} сек.'
-       )
+       # print(
+       #     f'Продолжительность запроса {request.path} - '
+       #     f'{time.monotonic() - timestamp:.3f} сек.'
+       # )
 
        return response

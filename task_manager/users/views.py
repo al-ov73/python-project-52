@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import ProtectedError
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -17,9 +18,7 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         #users = User.objects.all().order_by('-timestamp',)
-        logger.error('запрос к бд')
         users = User.objects.all()
-        logger.error('Запрос к бд завершен')
         return render(request, 'users/index.html', context={
             'users': users,
         })
@@ -78,6 +77,10 @@ class UserFormDeleteView(View):
         user_id = kwargs.get('pk')
         user = User.objects.get(id=user_id)
         if user:
-            user.delete()
+            try:
+                user.delete()
+            except ProtectedError:
+                messages.add_message(request, messages.ERROR, 'У пользователя есть задачи.')
+                return redirect('users')
         messages.add_message(request, messages.SUCCESS, 'Пользователь успешно удален.')
         return redirect('users')
