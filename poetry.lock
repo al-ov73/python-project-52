@@ -179,6 +179,16 @@ setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
 
 [[package]]
+name = "logging"
+version = "0.4.9.6"
+description = "A logging module for Python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "logging-0.4.9.6.tar.gz", hash = "sha256:26f6b50773f085042d301085bd1bf5d9f3735704db9f37c1ce6d8b85c38f2417"},
+]
+
+[[package]]
 name = "packaging"
 version = "23.2"
 description = "Core utilities for Python packages"
@@ -342,4 +352,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "fb8d93809a39d7665374f5e6aa890b7b56bf27cc87f9916e5b3e34d9ffe49e0b"
+content-hash = "fa77025c4196cf259d465c85390b5a1fa8c9eb1c97dc44cd0a61d02e1fcea0bc"

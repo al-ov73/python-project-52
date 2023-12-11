@@ -1,0 +1,42 @@
+{% extends "basic.html" %}
+
+
+{% block content %}
+{% load i18n %}
+
+<h1 class="my-4">
+
+Статусы
+
+      </h1>
+
+<a class="btn btn-primary mb-3" href="/statuses/create/">Создать статус</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Дата создания</th>
+      <th></th>
+    </tr>
+    <tbody>
+{% for status in statuses %}
+      <tr>
+      <td>{{ status.id }}</td>
+      <td>{{ status.name }}</td>
+      <td>{{ status.timestamp }}</td>
+      <td>
+          <form action="{% url 'status_update' status.id %}" method="get">
+            {% csrf_token %}
+          <input type="submit" value="Изменить">
+            </form>
+          <form action="{% url 'status_delete' status.id %}" method="get">
+            {% csrf_token %}
+          <input type="submit" value="Удалить">
+            </form>
+      </td>
+    </tr>
+      {% endfor %}
+    </tbody>
+
+{% endblock %}

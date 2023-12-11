@@ -50,11 +50,17 @@
       </li>
 
         {% if request.user.is_authenticated %}
-<li class="nav-link"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+
+            <li class="nav-item active">
+            <a class="nav-link" href="/statuses/">Статусы<span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-link"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+
         {% else %}
-      <li class="nav-item active">
-        <a class="nav-link" href="/login/">{% trans 'Login' %}<span class="sr-only"></span></a>
-      </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/login/">{% trans 'Login' %}<span class="sr-only"></span></a>
+              </li>
               <li class="nav-item active">
         <a class="nav-link" href="/users/create/">{% trans 'Registration' %}<span class="sr-only"></span></a>
       </li>

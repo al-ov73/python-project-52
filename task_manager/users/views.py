@@ -8,12 +8,18 @@ from django.views import View
 from task_manager.users.models import User
 from task_manager.users.forms import UserForm, UserUpdateForm
 from django.contrib.auth import login, authenticate
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         #users = User.objects.all().order_by('-timestamp',)
+        logger.error('запрос к бд')
         users = User.objects.all()
+        logger.error('Запрос к бд завершен')
         return render(request, 'users/index.html', context={
             'users': users,
         })
