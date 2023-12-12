@@ -8,7 +8,7 @@ from django.views import View
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
 from task_manager.users.models import User
-from task_manager.users.forms import UserForm
+
 from django.contrib.auth import login, authenticate
 
 

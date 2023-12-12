@@ -39,7 +39,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'task_manager.tasks',
 ]
 
-AUTH_USER_MODEL = 'users.User'
-ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.UserForm'
+# AUTH_USER_MODEL = 'users.User'
+# ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.UserForm'
 
 
 MIDDLEWARE = [

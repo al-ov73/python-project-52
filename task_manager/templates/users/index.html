@@ -21,10 +21,10 @@
     {% for user in users %}
     <tr>
       <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.surname }}</td>
-      <td>{{ user.username }}</td>
-      <td>{{ user.timestamp }}</td>
+      <td>{{ user.user.first_name }}</td>
+      <td>{{ user.user.last_name }}</td>
+      <td>{{ user.user.username }}</td>
+      <td>{{ user.user.date_joined }}</td>
       <td>
           <form action="{% url 'users_update' user.id %}" method="get">
             {% csrf_token %}

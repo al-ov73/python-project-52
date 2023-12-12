@@ -28,7 +28,7 @@ class TestTaskes(TestCase):
             'password2': 'Testpass123',
         }
         self.client.post('/users/create/', user_data)
-        user = User.objects.get(name=user_data['name'])
+        user = User.objects.get(username=user_data['username'])
 
         credentials = {
             'username': 'Testuser',

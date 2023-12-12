@@ -6,7 +6,7 @@ from django.views import View
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
-
+from task_manager.users.models import Profile
 
 
 class IndexView(View):
@@ -30,12 +30,9 @@ class TaskFormCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         form = TaskForm(request.POST)
-        print('get user:', request.user)
-        print(form)
         if form.is_valid():
-            print('valid')
             instance = form.save(commit=False)
-            instance.author = self.request.user
+            instance.author = Profile.objects.get(user=self.request.user)
             instance.save()
             messages.add_message(request, messages.SUCCESS, 'Задача успешно создана.')
             return redirect('tasks')

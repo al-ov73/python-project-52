@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _
 from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView, AuthenticationForm, LogoutView
 from django.contrib.auth import logout
-from task_manager.users.forms import UserForm
+
 from django.contrib.auth import login as auth_login
 
 

@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.db.models import ProtectedError
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -6,8 +7,8 @@ from django.utils.translation import gettext as _
 from django.views.generic import UpdateView, CreateView
 from django.views.generic.base import TemplateView
 from django.views import View
-from task_manager.users.models import User
-from task_manager.users.forms import UserForm, UserUpdateForm
+from task_manager.users.models import Profile
+from task_manager.users.forms import ProfileUpdateForm, CreateUserForm
 from django.contrib.auth import login, authenticate
 import logging
 
@@ -17,25 +18,29 @@ logger = logging.getLogger(__name__)
 class IndexView(View):
 
     def get(self, request, *args, **kwargs):
-        #users = User.objects.all().order_by('-timestamp',)
-        users = User.objects.all()
+        #users = Profile.objects.all().order_by('-timestamp',)
+        users = Profile.objects.all()
         return render(request, 'users/index.html', context={
             'users': users,
         })
 
-class UserFormCreateView(CreateView):
+class ProfileFormCreateView(CreateView):
 
     def get(self, request, *args, **kwargs):
-        form = UserForm()
+        form = CreateUserForm()
         return render(request, 'users/create.html', {'form': form})
 
 
     def post(self, request, *args, **kwargs):
-        form = UserForm(request.POST)
+        form = CreateUserForm(request.POST)
+        # profile_form = ProfileForm(request.POST)
         if form.is_valid():
-            form.save()
-            # user = User(request.POST)
-            # user.save()
+            user = form.save()
+
+            # profile = profile_form.save(commit=False)
+            profile = Profile(user.id)
+            profile.user = user
+            profile.save()
             username = request.POST['username']
             password = request.POST['password1']
             user = authenticate(username=username, password=password)
@@ -46,7 +51,7 @@ class UserFormCreateView(CreateView):
         return render(request, 'users/create.html', {'form': form})
 
 
-class UserFormEditView(View):
+class ProfileFormEditView(View):
 
 
     def get(self, request, *args, **kwargs):
@@ -57,14 +62,14 @@ class UserFormEditView(View):
         if request.user.pk != user_id:
             messages.add_message(request, messages.SUCCESS, 'У вас нет прав для изменения другого пользователя.')
             return redirect('users')
-        user = User.objects.get(id=user_id)
-        form = UserUpdateForm(instance=user)
+        user = Profile.objects.get(id=user_id)
+        form = ProfileUpdateForm(instance=user)
         return render(request, 'users/update.html', {'form': form, 'user_id': user_id})
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
-        user = User.objects.get(id=user_id)
-        form = UserUpdateForm(request.POST, instance=user)
+        user = Profile.objects.get(id=user_id)
+        form = ProfileUpdateForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Данные успешно изменены.')
@@ -72,13 +77,15 @@ class UserFormEditView(View):
 
         return render(request, 'users/update.html', {'form': form, 'user_id': user_id})
 
-class UserFormDeleteView(View):
+class ProfileFormDeleteView(View):
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
-        user = User.objects.get(id=user_id)
+        user = Profile.objects.get(id=user_id)
+        profile = User.objects.get(id=user_id)
         if user:
             try:
                 user.delete()
+                profile.delete()
             except ProtectedError:
                 messages.add_message(request, messages.ERROR, 'У пользователя есть задачи.')
                 return redirect('users')

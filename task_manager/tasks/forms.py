@@ -9,10 +9,10 @@ class TaskForm(forms.ModelForm):
         fields = ['name', 'description', 'status', 'responsible']
 
 
-    def __init__(self, *args, **kwargs):
-        super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields['responsible'].label_from_instance = self.label_from_instance
-
-    @staticmethod
-    def label_from_instance(obj):
-        return "%s %s" % (obj.name, obj.surname)
+    # def __init__(self, *args, **kwargs):
+    #     super(TaskForm, self).__init__(*args, **kwargs)
+    #     self.fields['responsible'].label_from_instance = self.label_from_instance
+    #
+    # @staticmethod
+    # def label_from_instance(obj):
+    #     return "%s %s" % (obj.name, obj.surname)
