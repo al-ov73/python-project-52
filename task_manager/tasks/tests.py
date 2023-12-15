@@ -19,7 +19,7 @@ class TestTaskes(TestCase):
         response = self.client.get('/tasks/')
         self.assertEquals(response.status_code, 200)
 
-    def test_create_task(self):
+    def test_create_and_delete_task(self):
         user_data = {
             'name': 'username',
             'surname': 'usersurname',
@@ -51,13 +51,9 @@ class TestTaskes(TestCase):
         self.client.post('/tasks/create/', task_data, request={'user': user,})
         new_task = Task.objects.get(name=task_data['name'])
         self.assertIsInstance(new_task, Task)
+        #delete
+        id = new_task.id
+        response = self.client.post(f'/tasks/{id}/delete/')
+        self.assertFalse(Task.objects.filter(id=id))
 
-    # def test_delete_user(self):
-    #     credentials = {
-    #         'name': 'testtask',
-    #     }
-    #     response = self.client.post('/tasks/create/', credentials, follow=True)
-    #     task = Task.objects.get(name=credentials['name'])
-    #     pk = task.pk
-    #     response = self.client.post(f'/tasks/{pk}/delete/')
-    #     self.assertFalse(Task.objects.filter(id=pk))
+

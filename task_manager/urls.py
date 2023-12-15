@@ -1,24 +1,9 @@
-"""
-URL configuration for task_manager project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
+from django.conf.urls import handler404, handler500, handler403, handler400
 
 urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
@@ -27,5 +12,8 @@ urlpatterns = [
     path('users/', include('task_manager.users.urls')),
     path('statuses/', include('task_manager.statuses.urls')),
     path('tasks/', include('task_manager.tasks.urls')),
+    path('labels/', include('task_manager.labels.urls')),
     path('', views.HomePageView.as_view(), name='index'),
 ]
+#
+# handler404 = 'task_manager.views.error_404'

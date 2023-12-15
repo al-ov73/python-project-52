@@ -1,27 +1,35 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.template.backends import django
 
 from django.views.generic import UpdateView, CreateView
 from django.views import View
 
+from task_manager.tasks import filters
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
+from task_manager.tasks.filters import TaskFilter
 from task_manager.users.models import Profile
+from task_manager.labels.models import Label
+from django_filters import rest_framework as filters
 
 
-class IndexView(View):
+class IndexView(LoginRequiredMixin, View):
+
+    filter_backends = (filters.DjangoFilterBackend,)
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            tasks = Task.objects.all()
+        # tasks = Task.objects.all()
 
-            return render(request, 'tasks/index.html', context={
-                'tasks': tasks,
-            })
-        else:
-            return redirect('index')
+        tasks = TaskFilter(request.GET, queryset=Task.objects.all())
 
-class TaskFormCreateView(CreateView):
+        return render(request, 'tasks/index.html', context={
+            'tasks': tasks,
+            'filter': tasks
+        })
+
+class TaskFormCreateView(LoginRequiredMixin, CreateView):
 
     def get(self, request, *args, **kwargs):
         form = TaskForm()
@@ -32,14 +40,18 @@ class TaskFormCreateView(CreateView):
         form = TaskForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
+            labels = form.cleaned_data['label']
+
             instance.author = Profile.objects.get(user=self.request.user)
             instance.save()
+            for l in labels:
+                instance.label.add(l)
             messages.add_message(request, messages.SUCCESS, 'Задача успешно создана.')
             return redirect('tasks')
         messages.add_message(request, messages.SUCCESS, 'Введите корректные данные.')
         return render(request, 'tasks/create.html', {'form': form})
 
-class TaskFormEditView(UpdateView):
+class TaskFormEditView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
@@ -54,20 +66,22 @@ class TaskFormEditView(UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, 'Статус успешно изменен.')
-            return redirect('tasks')
+            return redirect('task_show',  task.id )
 
         return render(request, 'tasks/update.html', {'form': form, 'pk': task_id})
 
-class TaskView(View):
+
+class TaskView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = Task.objects.get(pk=task_id)
-        print(task.name)
+        labels = task.label.all()
         return render(request, 'tasks/show.html', context={
             'task': task,
+            'labels': labels,
         })
 
-class TaskFormDeleteView(UpdateView):
+class TaskFormDeleteView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')

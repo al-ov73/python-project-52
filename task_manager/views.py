@@ -37,3 +37,8 @@ def logout_view(request):
     logout(request)
     messages.add_message(request, messages.INFO, 'Вы успешно вышли из системы.')
     return redirect('index')
+
+#
+# def error_404(request, *args, **kwargs):
+#    context = {}
+#    return render(request,'error/404.html', context)

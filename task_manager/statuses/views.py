@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
@@ -12,7 +13,7 @@ from task_manager.users.models import User
 from django.contrib.auth import login, authenticate
 
 
-class IndexView(View):
+class IndexView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         #users = User.objects.all().order_by('-timestamp',)
@@ -21,7 +22,7 @@ class IndexView(View):
             'statuses': statuses,
         })
 
-class StatusFormCreateView(CreateView):
+class StatusFormCreateView(LoginRequiredMixin, CreateView):
 
     def get(self, request, *args, **kwargs):
         form = StatusForm()
@@ -37,7 +38,7 @@ class StatusFormCreateView(CreateView):
         messages.add_message(request, messages.SUCCESS, 'Введите корректные данные.')
         return render(request, 'statuses/create.html', {'form': form})
 
-class StatusFormEditView(UpdateView):
+class StatusFormEditView(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
         status = Status.objects.get(id=status_id)
@@ -45,7 +46,6 @@ class StatusFormEditView(UpdateView):
         return render(request, 'statuses/update.html', {'form': form, 'pk': status_id})
 
     def post(self, request, *args, **kwargs):
-        print(kwargs)
         status_id = kwargs.get('pk')
         status = Status.objects.get(id=status_id)
         form = StatusForm(request.POST, instance=status)
@@ -56,7 +56,7 @@ class StatusFormEditView(UpdateView):
 
         return render(request, 'statuses/update.html', {'form': form, 'pk': status_id})
 
-class StatusFormDeleteView(UpdateView):
+class StatusFormDeleteView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')

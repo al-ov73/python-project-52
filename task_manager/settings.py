@@ -30,6 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
+
 ALLOWED_HOSTS = ['webserver', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'django_filters',
     'task_manager',
     'task_manager.users',
     'task_manager.statuses',
@@ -55,6 +57,12 @@ INSTALLED_APPS = [
 # AUTH_USER_MODEL = 'users.User'
 # ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.UserForm'
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        ...
+    ),
+}
 
 MIDDLEWARE = [
     'task_manager.middleware.RequestTimeMiddleware',

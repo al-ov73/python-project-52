@@ -1,0 +1,33 @@
+{% extends "basic.html" %}
+
+
+{% block content %}
+{% load i18n %}
+      <h1 class="my-4">
+
+Создать метку
+
+      </h1>
+    {% if form.errors %}
+    <div>
+        <ul>
+        {% for error in form.errors %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+        <form action="{% url 'label_create' %}" method="post">
+            {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p ><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+            <input type="submit" value="Создать">
+        </form>
+
+{% endblock %}
