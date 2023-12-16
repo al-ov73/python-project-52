@@ -8,7 +8,7 @@ from django.conf.urls import handler404, handler500, handler403, handler400
 urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
-    path('admin/', admin.site.urls, name='admin'),
+    # path('admin/', admin.site.urls, name='admin'),
     path('users/', include('task_manager.users.urls')),
     path('statuses/', include('task_manager.statuses.urls')),
     path('tasks/', include('task_manager.tasks.urls')),
