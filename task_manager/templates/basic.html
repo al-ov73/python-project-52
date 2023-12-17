@@ -52,18 +52,18 @@
         {% if request.user.is_authenticated %}
 
             <li class="nav-item active">
-                <a class="nav-link" href="/statuses/">Статусы<span class="sr-only"></span></a>
+                <a class="nav-link" href="/statuses/">{% trans 'Statuses' %}<span class="sr-only"></span></a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="/labels/">Метки<span class="sr-only"></span></a>
+                <a class="nav-link" href="/labels/">{% trans 'Labels' %}<span class="sr-only"></span></a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="/tasks/">Задачи<span class="sr-only"></span></a>
+                <a class="nav-link" href="/tasks/">{% trans 'Tasks' %}<span class="sr-only"></span></a>
             </li>
 
-            <li class="nav-link"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+            <li class="nav-link"> {{user.username}} | <a href="{% url 'logout' %}">{% trans 'Logout' %}</a></li>
 
         {% else %}
               <li class="nav-item active">

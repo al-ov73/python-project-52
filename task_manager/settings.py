@@ -80,7 +80,7 @@ MIDDLEWARE = [
 ]
 
 ROLLBAR = {
-    'access_token': 'c0796d01fd0e4adfa83f3ced137815e0',
+    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
@@ -149,8 +149,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 

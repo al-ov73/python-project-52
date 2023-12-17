@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 14:11+0400\n"
+"POT-Creation-Date: 2023-12-18 00:42+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,15 +24,31 @@ msgstr ""
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: templates/basic.html:49
+#: templates/basic.html:49 templates/users/index.html:7
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/basic.html:52
+#: templates/basic.html:55
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/basic.html:59 templates/tasks/show.html:40
+msgid "Labels"
+msgstr "Метки"
+
+#: templates/basic.html:63 templates/tasks/index.html:9
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/basic.html:66
+msgid "Logout"
+msgstr "Выход"
+
+#: templates/basic.html:70 templates/login.html:8
 msgid "Login"
 msgstr "Вход"
 
-#: templates/basic.html:55
+#: templates/basic.html:73 templates/users/create.html:25
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -44,7 +60,88 @@ msgstr "Привет от Хекслета!"
 msgid "Programming courses"
 msgstr "Практические курсы по программированию"
 
-#: views.py:17
+#: templates/index.html:21
+msgid "Learn more"
+msgstr "Узнать больше"
+
+#: templates/tasks/create.html:8
+msgid "Create task"
+msgstr "Создать задачу"
+
+#: templates/tasks/create.html:30
+msgid "Create"
+msgstr "Создать"
+
+#: templates/tasks/delete.html:8
+msgid "Task delete"
+msgstr "Удалить задачу"
+
+#: templates/tasks/delete.html:10
+msgid "Are you sure, that you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: templates/tasks/delete.html:14 templates/tasks/index.html:55
+#: templates/tasks/show.html:53 templates/users/index.html:35
+msgid "Delete"
+msgstr "Удалить"
+
+#: templates/tasks/index.html:31 templates/users/index.html:14
+msgid "Name"
+msgstr "Имя"
+
+#: templates/tasks/index.html:32 templates/tasks/show.html:30
+#, fuzzy
+#| msgid "Statuses"
+msgid "Status"
+msgstr "Статусы"
+
+#: templates/tasks/index.html:33 templates/tasks/show.html:22
+msgid "Created by"
+msgstr "Дата создания"
+
+#: templates/tasks/index.html:34 templates/tasks/show.html:26
+msgid "Responsible"
+msgstr "Ответственный"
+
+#: templates/tasks/index.html:35 templates/tasks/show.html:34
+#: templates/users/index.html:17
+msgid "Date of creation"
+msgstr "Дата создания"
+
+#: templates/tasks/index.html:51 templates/tasks/show.html:51
+#: templates/tasks/update.html:30
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/tasks/show.html:9
+msgid "Task detail"
+msgstr "Просмотр задачи"
+
+#: templates/tasks/update.html:8
+#, fuzzy
+#| msgid "Task manager"
+msgid "Task update"
+msgstr "Менеджер задач"
+
+#: templates/users/index.html:15
+msgid "Surname"
+msgstr "Фамилия"
+
+#: templates/users/index.html:16
+#, fuzzy
+#| msgid "Users"
+msgid "Username"
+msgstr "Пользователи"
+
+#: templates/users/index.html:31
+msgid "Modif"
+msgstr "Изменить"
+
+#: templates/users/update.html:22
+msgid "Save"
+msgstr "Сохранить"
+
+#: views.py:22
 msgid "Hello"
 msgstr "Это динамический текст"
 

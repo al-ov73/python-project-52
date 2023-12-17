@@ -6,7 +6,7 @@
 
       <h1 class="my-4">
 
-Просмотр задачи
+{% trans 'Task detail' %}
 
       </h1>
 
@@ -19,25 +19,25 @@
     <hr>
     <div class="container">
       <div class="row p-1">
-        <div class="col">Автор</div>
+        <div class="col">{% trans 'Created by' %}</div>
         <div class="col">{{ task.author.user.first_name }} {{ task.author.user.last_name }}</div>
       </div>
       <div class="row p-1">
-        <div class="col">Исполнитель</div>
+        <div class="col">{% trans 'Responsible' %}</div>
         <div class="col">{{ task.responsible.user.first_name }} {{ task.responsible.user.last_name }}</div>
       </div>
       <div class="row p-1">
-        <div class="col">Статус</div>
+        <div class="col">{% trans 'Status' %}</div>
         <div class="col">{{ task.status }}</div>
       </div>
       <div class="row p-1">
-        <div class="col">Дата создания</div>
+        <div class="col">{% trans 'Date of creation' %}</div>
         <div class="col">{{ task.timestamp }}</div>
       </div>
 
       <div class="row p-1">
         <div class="col">
-          <h6>Метки:</h6>
+          <h6>{% trans 'Labels' %}:</h6>
           <ul>
             {% for l in labels %}
               <li>{{ l.name }}</li>
@@ -48,9 +48,9 @@
 
       <div class="row p-1">
         <div class="col">
-          <a href="{% url 'task_update' task.id %}">Изменить</a>
+          <a href="{% url 'task_update' task.id %}">{% trans 'Update' %}</a>
           <br>
-          <a href="{% url 'task_delete' task.id %}">Удалить</a>
+          <a href="{% url 'task_delete' task.id %}">{% trans 'Delete' %}</a>
         </div>
       </div>
     </div>
