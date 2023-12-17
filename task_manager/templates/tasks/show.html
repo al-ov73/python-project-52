@@ -20,11 +20,11 @@
     <div class="container">
       <div class="row p-1">
         <div class="col">Автор</div>
-        <div class="col">{{ task.author.name }} {{ task.author.surname }}</div>
+        <div class="col">{{ task.author.user.first_name }} {{ task.author.user.last_name }}</div>
       </div>
       <div class="row p-1">
         <div class="col">Исполнитель</div>
-        <div class="col">{{ task.responsible.name }} {{ task.responsible.surname }}</div>
+        <div class="col">{{ task.responsible.user.first_name }} {{ task.responsible.user.last_name }}</div>
       </div>
       <div class="row p-1">
         <div class="col">Статус</div>

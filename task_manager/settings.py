@@ -40,7 +40,8 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django_extensions',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_filters',
     'task_manager',
+    'task_manager.labels',
     'task_manager.users',
     'task_manager.statuses',
     'task_manager.tasks',

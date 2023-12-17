@@ -20,12 +20,12 @@ class IndexView(LoginRequiredMixin, View):
     filter_backends = (filters.DjangoFilterBackend,)
 
     def get(self, request, *args, **kwargs):
-        # tasks = Task.objects.all()
-
-        tasks = TaskFilter(request.GET, queryset=Task.objects.all())
+        profile = Profile.objects.get(user = request.user)
+        tasks = TaskFilter(request.GET, queryset=Task.objects.all(), profile_id = profile.id)
+        print(tasks.qs)
 
         return render(request, 'tasks/index.html', context={
-            'tasks': tasks,
+            # 'tasks': tasks,
             'filter': tasks
         })
 
@@ -76,6 +76,7 @@ class TaskView(LoginRequiredMixin, View):
         task_id = kwargs.get('pk')
         task = Task.objects.get(pk=task_id)
         labels = task.label.all()
+        print(task.author.user.first_name)
         return render(request, 'tasks/show.html', context={
             'task': task,
             'labels': labels,
