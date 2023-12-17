@@ -9,13 +9,22 @@ class TestTaskes(TestCase):
 
     def test_is_ok_index(self):
 
+        user_data = {
+            'name': 'username',
+            'surname': 'usersurname',
+            'username': 'Testuser',
+            'password1': 'Testpass123',
+            'password2': 'Testpass123',
+        }
+        self.client.post('/users/create/', user_data)
+        user = User.objects.get(username=user_data['username'])
+
         credentials = {
             'username': 'Testuser',
-            'email': 'test@test.ru',
             'password': 'Testpass123',
         }
-        user = User.objects.create_user(**credentials)
         response = self.client.post('/login/', credentials, follow=True)
+        self.assertTrue(response.context['user'].is_active)
         response = self.client.get('/tasks/')
         self.assertEquals(response.status_code, 200)
 
