@@ -5,7 +5,7 @@
 {% load i18n %}
       <h1 class="my-4">
 
-Изменение статуса
+{% trans 'Status update' %}
 
       </h1>
     {% if form.errors %}
@@ -27,7 +27,7 @@
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
 
-            <input type="submit" value="Изменить">
+            <input type="submit" value="{% trans 'Update' %}">
         </form>
 
 {% endblock %}

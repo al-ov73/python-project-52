@@ -5,13 +5,13 @@
 {% load i18n %}
       <h1 class="my-4">
 
-Удаление статуса
+{% trans 'Status delete' %}
          </h1>
-<p>Вы уверены, что хотите удалить {{ name }}?</p>
+<p>{% trans 'Are you sure, that you want to delete' %} {{ name }}?</p>
 
           <form action="{% url 'status_delete' pk %}" method="post">
             {% csrf_token %}
-          <input type="submit" value="Удалить">
+          <input type="submit" value="{% trans 'Delete' %}">
         </form>
 
 {% endblock %}
