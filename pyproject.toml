@@ -22,7 +22,7 @@ logging = "^0.4.9.6"
 django-filter = "^23.5"
 django-extensions = "^3.2.3"
 rollbar = "^1.0.0"
-flake8 = "^6.1.0"
+flake8 = "4.0.1"
 
 
 [build-system]
