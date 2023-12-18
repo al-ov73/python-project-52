@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from task_manager.statuses.models import Status
 
+
 class TestStatuses(TestCase):
 
     def test_is_ok_index(self):
@@ -11,8 +12,8 @@ class TestStatuses(TestCase):
             'email': 'test@test.ru',
             'password': 'Testpass123',
         }
-        user = User.objects.create_user(**credentials)
-        response = self.client.post('/login/', credentials, follow=True)
+        User.objects.create_user(**credentials)
+        self.client.post('/login/', credentials, follow=True)
 
         response = self.client.get('/statuses/')
         self.assertEquals(response.status_code, 200)
@@ -24,13 +25,13 @@ class TestStatuses(TestCase):
             'email': 'test@test.ru',
             'password': 'Testpass123',
         }
-        user = User.objects.create_user(**credentials)
-        response = self.client.post('/login/', credentials, follow=True)
+        User.objects.create_user(**credentials)
+        self.client.post('/login/', credentials, follow=True)
 
         status_data = {
             'name': 'teststatus',
         }
-        response = self.client.post('/statuses/create/', status_data)
+        self.client.post('/statuses/create/', status_data)
         status = Status.objects.get(name=status_data['name'])
         self.assertIsInstance(status, Status)
 
@@ -40,14 +41,16 @@ class TestStatuses(TestCase):
             'email': 'test@test.ru',
             'password': 'Testpass123',
         }
-        user = User.objects.create_user(**credentials)
-        response = self.client.post('/login/', credentials, follow=True)
+        User.objects.create_user(**credentials)
+        self.client.post('/login/', credentials, follow=True)
 
         credentials = {
             'name': 'teststatus',
         }
-        response = self.client.post('/statuses/create/', credentials, follow=True)
+        self.client.post(
+            '/statuses/create/', credentials, follow=True
+        )
         status = Status.objects.get(name=credentials['name'])
         pk = status.pk
-        response = self.client.post(f'/statuses/{pk}/delete/')
+        self.client.post(f'/statuses/{pk}/delete/')
         self.assertFalse(Status.objects.filter(id=pk))

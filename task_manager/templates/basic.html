@@ -48,34 +48,59 @@
       <li class="nav-item active">
         <a class="nav-link" href="/users/">{% trans 'Users' %}<span class="sr-only"></span></a>
       </li>
+        </ul>
 
         {% if request.user.is_authenticated %}
-
+<ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/statuses/">{% trans 'Statuses' %}<span class="sr-only"></span></a>
             </li>
-
+  </ul>
+      <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/labels/">{% trans 'Labels' %}<span class="sr-only"></span></a>
             </li>
-
+  </ul>
+      <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/tasks/">{% trans 'Tasks' %}<span class="sr-only"></span></a>
             </li>
 
-            <li class="nav-link"> {{user.username}} | <a href="{% url 'logout' %}">{% trans 'Logout' %}</a></li>
+  </ul>
+      <ul class="navbar-nav mr-auto">
+
+            <li class="nav-link">
+                <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+              <input type="hidden" name="extra_submit_param" value="{% trans 'Logout' %}">
+              <input class="btn nav-link" type="submit" value="{% trans 'Logout' %}">
+            </form>
+  </ul>
+      <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <div class="nav-link" >{{user.username}}<span class="sr-only"></span></div>
+            </li>
+
+  </ul>
+
 
         {% else %}
+
+      <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="/login/">{% trans 'Login' %}<span class="sr-only"></span></a>
               </li>
+            </ul>
+      <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
         <a class="nav-link" href="/users/create/">{% trans 'Registration' %}<span class="sr-only"></span></a>
       </li>
+            </ul>
+
 {% endif %}
 
 
-    </ul>
+
   </div>
 
 <div class='d-flex justify-content-end'>

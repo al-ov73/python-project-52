@@ -18,14 +18,51 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Task',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('description', models.CharField(max_length=200)),
-                ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='author', to='users.profile')),
-                ('label', models.ManyToManyField(blank=True, to='labels.label')),
-                ('responsible', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='responsible', to='users.profile')),
-                ('status', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='statuses.status')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID'
+                    )
+                ),
+                (
+                    'name', models.CharField(max_length=200)
+                ),
+                (
+                    'description', models.CharField(max_length=200)
+                ),
+                (
+                    'timestamp',
+                    models.DateTimeField(auto_now_add=True)
+                ),
+                (
+                    'author',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='author',
+                        to='users.profile'
+                    )
+                ),
+                (
+                    'label',
+                    models.ManyToManyField(blank=True, to='labels.label')
+                ),
+                (
+                    'responsible',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='responsible',
+                        to='users.profile'
+                    )
+                ),
+                (
+                    'status', models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to='statuses.status'
+                    )
+                ),
             ],
         ),
     ]

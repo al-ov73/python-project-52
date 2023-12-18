@@ -14,3 +14,6 @@ locale2:
 migrate:
 	python manage.py makemigrations
 	python manage.py migrate
+
+lint:
+	poetry run flake8 task_manager

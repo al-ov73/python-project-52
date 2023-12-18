@@ -37,7 +37,7 @@ class TestUser(TestCase):
             'password1': 'Testpass123',
             'password2': 'Testpass123',
         }
-        response = self.client.post('/users/create/', credentials)
+        self.client.post('/users/create/', credentials)
         user = User.objects.get(username=credentials['username'])
         self.assertIsInstance(user, User)
 
@@ -49,8 +49,8 @@ class TestUser(TestCase):
             'password1': 'Testpass123',
             'password2': 'Testpass123',
         }
-        response = self.client.post('/users/create/', credentials, follow=True)
+        self.client.post('/users/create/', credentials, follow=True)
         user = User.objects.get(username=credentials['username'])
         pk = user.pk
-        response = self.client.post(f'/users/{pk}/delete/')
+        self.client.post(f'/users/{pk}/delete/')
         self.assertFalse(User.objects.filter(id=pk))

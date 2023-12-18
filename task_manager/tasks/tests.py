@@ -17,7 +17,7 @@ class TestTaskes(TestCase):
             'password2': 'Testpass123',
         }
         self.client.post('/users/create/', user_data)
-        user = User.objects.get(username=user_data['username'])
+        User.objects.get(username=user_data['username'])
 
         credentials = {
             'username': 'Testuser',
@@ -57,12 +57,9 @@ class TestTaskes(TestCase):
             'status': status.id,
             'responsible': user.id,
         }
-        self.client.post('/tasks/create/', task_data, request={'user': user,})
+        self.client.post('/tasks/create/', task_data, request={'user': user})
         new_task = Task.objects.get(name=task_data['name'])
         self.assertIsInstance(new_task, Task)
-        #delete
         id = new_task.id
-        response = self.client.post(f'/tasks/{id}/delete/')
+        self.client.post(f'/tasks/{id}/delete/')
         self.assertFalse(Task.objects.filter(id=id))
-
-

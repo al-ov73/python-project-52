@@ -1,9 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
-from django.urls import reverse_lazy
-from django.contrib.auth.views import LogoutView
-from django.conf.urls import handler404, handler500, handler403, handler400
+
 
 urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
@@ -15,5 +13,3 @@ urlpatterns = [
     path('tasks/', include('task_manager.tasks.urls')),
     path('', views.HomePageView.as_view(), name='index'),
 ]
-#
-# handler404 = 'task_manager.views.error_404'

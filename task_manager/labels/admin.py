@@ -1,6 +1,4 @@
-from django.apps import AppConfig
+from django.contrib import admin
+from .models import Label
 
-
-class UsersConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'task_manager.labels'
+admin.site.register(Label)
