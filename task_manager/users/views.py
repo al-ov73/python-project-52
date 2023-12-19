@@ -92,7 +92,7 @@ class ProfileFormEditView(UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Данные успешно изменены.'
+                request, messages.SUCCESS, 'Пользователь успешно изменен'
             )
             return redirect('users')
 
