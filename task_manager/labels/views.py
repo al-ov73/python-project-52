@@ -57,7 +57,7 @@ class LabelFormEditView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Статус успешно изменен.'
+                request, messages.SUCCESS, 'Метка успешно изменена'
             )
             return redirect('labels')
 
