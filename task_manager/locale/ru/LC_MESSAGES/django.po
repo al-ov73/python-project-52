@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-18 20:53+0400\n"
+"POT-Creation-Date: 2023-12-19 12:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,28 +28,28 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/basic.html:55 templates/labels/index.html:9
+#: templates/basic.html:56 templates/labels/index.html:9
 #: templates/statuses/index.html:9
 msgid "Statuses"
 msgstr "Статусы"
 
-#: templates/basic.html:59 templates/tasks/show.html:40
+#: templates/basic.html:61 templates/tasks/show.html:40
 msgid "Labels"
 msgstr "Метки"
 
-#: templates/basic.html:63 templates/tasks/index.html:9
+#: templates/basic.html:66 templates/tasks/index.html:9
 msgid "Tasks"
 msgstr "Задачи"
 
-#: templates/basic.html:66
+#: templates/basic.html:75 templates/basic.html:76
 msgid "Logout"
 msgstr "Выйти"
 
-#: templates/basic.html:70 templates/login.html:9
+#: templates/basic.html:91
 msgid "Login"
-msgstr "Войти"
+msgstr "Вход"
 
-#: templates/basic.html:73 templates/users/create.html:25
+#: templates/basic.html:96 templates/users/create.html:25
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -61,7 +61,7 @@ msgstr "Привет от Хекслета!"
 msgid "Programming courses"
 msgstr "Практические курсы по программированию"
 
-#: templates/index.html:21
+#: templates/index.html:20
 msgid "Learn more"
 msgstr "Узнать больше"
 
@@ -125,6 +125,12 @@ msgstr "Изменить"
 #| msgid "Task manager"
 msgid "Label update"
 msgstr "Менеджер задач"
+
+#: templates/login.html:9
+#, fuzzy
+#| msgid "Login"
+msgid "To login"
+msgstr "Войти"
 
 #: templates/statuses/delete.html:8
 #, fuzzy
