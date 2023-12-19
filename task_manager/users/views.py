@@ -44,7 +44,7 @@ class ProfileFormCreateView(CreateView):
             # login(request, user)
             messages.add_message(
                 request, messages.SUCCESS,
-                'Пользователь успешно создан.'
+                'Пользователь успешно зарегистрирован'
             )
             return redirect('login')
         messages.add_message(
