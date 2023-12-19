@@ -29,6 +29,7 @@ class AuthenticationUserForm(AuthenticationForm):
 
 
 class CreateUserForm(UserCreationForm):
+
     class Meta:
 
         model = User
@@ -75,6 +76,10 @@ class ProfileUpdateForm(UserChangeForm):
         'username': forms.TextInput(attrs={'class': 'form-input'}),
     }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ''
+    
     class Meta:
 
         model = Profile
