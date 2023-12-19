@@ -103,6 +103,15 @@ class ProfileFormEditView(UpdateView):
 
 class ProfileFormDeleteView(View):
 
+    def get(self, request, *args, **kwargs):
+        user_id = kwargs.get('pk')
+        user = User.objects.get(id=user_id)
+        return render(
+            request,
+            'users/delete.html',
+            {'user': user}
+        )
+
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
         user = Profile.objects.get(id=user_id)

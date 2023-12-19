@@ -28,7 +28,7 @@
             {% csrf_token %}
           <input type="submit" value="{% trans 'Modif' %}">
             </form>
-          <form action="{% url 'users_delete' user.id %}" method="post">
+          <form action="{% url 'users_delete' user.id %}" method="get">
             {% csrf_token %}
           <input type="submit" value="{% trans 'Delete' %}">
             </form>
