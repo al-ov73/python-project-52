@@ -21,3 +21,7 @@ class Task(models.Model):
     )
     timestamp = models.DateTimeField(auto_now_add=True, blank=True)
     label = models.ManyToManyField(Label, blank=True, verbose_name = "Метки")
+
+    def __init__(self, *args, **kwargs):
+        super(Task, self).__init__(*args, **kwargs)
+        self.label_suffix = ''

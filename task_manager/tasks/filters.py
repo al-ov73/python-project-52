@@ -6,11 +6,16 @@ from task_manager.users.models import Profile
 
 
 class TaskFilter(django_filters.FilterSet):
-    label = django_filters.AllValuesFilter(field_name='label__name', label='Метка')
+    label = django_filters.AllValuesFilter(
+        field_name='label__name',
+        label='Метка',
+        label_suffix='',
+    )
     author = django_filters.BooleanFilter(
         field_name='author',
         method='filter_author',
-        widget=forms.CheckboxInput()
+        widget=forms.CheckboxInput(),
+        label_suffix='',
     )
 
     def __init__(self, *args, **kwargs):
