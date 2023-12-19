@@ -31,7 +31,7 @@ class LoginUser(LoginView):
         """Security check complete. Log the user in."""
         auth_login(self.request, form.get_user())
         messages.add_message(
-            self.request, messages.INFO, 'Вы успешно вошли в систему.'
+            self.request, messages.SUCCESS, 'Вы залогинены'
         )
         return HttpResponseRedirect(self.get_success_url())
 
