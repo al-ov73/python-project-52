@@ -75,8 +75,6 @@ class ProfileFormEditView(UpdateView):
             return redirect('users')
         user = User.objects.get(id=user_id)
         form = ProfileUpdateForm(instance=user)
-        for f in form:
-            print(f)
         return render(
             request,
             'users/update.html',
@@ -85,7 +83,7 @@ class ProfileFormEditView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('pk')
-        user = Profile.objects.get(id=user_id)
+        user = User.objects.get(id=user_id)
         form = ProfileUpdateForm(
             request.POST, instance=user
         )
