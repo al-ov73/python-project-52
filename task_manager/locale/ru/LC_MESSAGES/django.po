@@ -43,11 +43,11 @@ msgstr "Задачи"
 
 #: templates/basic.html:66
 msgid "Logout"
-msgstr "Выход"
+msgstr "Выйти"
 
 #: templates/basic.html:70 templates/login.html:9
 msgid "Login"
-msgstr "Вход"
+msgstr "Войти"
 
 #: templates/basic.html:73 templates/users/create.html:25
 msgid "Registration"
