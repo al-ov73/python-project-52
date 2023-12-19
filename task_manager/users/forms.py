@@ -44,11 +44,12 @@ class CreateUserForm(UserCreationForm):
 
 class ProfileUpdateForm(UserChangeForm):
 
-    name = forms.CharField(
+    first_name = forms.CharField(
         label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'})
     )
-    surname = forms.CharField(
-        label='Фамилия', widget=forms.TextInput(attrs={'class': 'form-input'})
+    last_name = forms.CharField(
+        label='Фамилия',
+        widget=forms.TextInput(attrs={'class': 'form-input'})
     )
     username = forms.CharField(
         label='Имя пользователя',
@@ -64,15 +65,15 @@ class ProfileUpdateForm(UserChangeForm):
     )
 
     labels = {
-        'name': 'Имя',
-        'surname': 'Фамилия',
+        'first_name': 'Имя',
+        'last_name': 'Фамилия',
         'username': 'Имя пользователя',
         'password1': 'Пароль',
         'password2': 'Подтверджение пароля',
     }
     widgets = {
-        'name': forms.TextInput(attrs={'class': 'form-input'}),
-        'surname': forms.TextInput(attrs={'class': 'form-input'}),
+        'first_name': forms.TextInput(attrs={'class': 'form-input'}),
+        'last_name': forms.TextInput(attrs={'class': 'form-input'}),
         'username': forms.TextInput(attrs={'class': 'form-input'}),
     }
 
@@ -82,5 +83,5 @@ class ProfileUpdateForm(UserChangeForm):
     
     class Meta:
 
-        model = Profile
-        fields = ['name', 'surname', 'username', 'password1', 'password2']
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'password1', 'password2']

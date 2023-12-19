@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import ProtectedError
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.views import View
 from task_manager.users.models import Profile
 from task_manager.users.forms import ProfileUpdateForm, CreateUserForm
@@ -55,7 +55,7 @@ class ProfileFormCreateView(CreateView):
         )
 
 
-class ProfileFormEditView(View):
+class ProfileFormEditView(UpdateView):
 
     def get(self, request, *args, **kwargs):
         if not request.user.pk:
@@ -73,8 +73,10 @@ class ProfileFormEditView(View):
                 'У вас нет прав для изменения другого пользователя.'
             )
             return redirect('users')
-        user = Profile.objects.get(id=user_id)
+        user = User.objects.get(id=user_id)
         form = ProfileUpdateForm(instance=user)
+        for f in form:
+            print(f)
         return render(
             request,
             'users/update.html',
