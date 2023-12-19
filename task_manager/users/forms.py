@@ -1,7 +1,27 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
 from task_manager.users.models import User, Profile
+
+
+class AuthenticationUserForm(AuthenticationForm):
+        
+    username = forms.CharField(
+        label='Имя пользователя',
+        widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'})
+    )
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.TextInput(attrs={'placeholder': 'Пароль'})
+    )
+    
+    class Meta:
+
+        model = User
+        fields = [
+            'username',
+            'password',
+        ]
 
 
 class CreateUserForm(UserCreationForm):

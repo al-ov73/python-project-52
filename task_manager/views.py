@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView, AuthenticationForm
 from django.contrib.auth import logout
 
 from django.contrib.auth import login as auth_login
-
+from task_manager.users.forms import AuthenticationUserForm
 
 class HomePageView(TemplateView):
 
@@ -24,7 +24,7 @@ class HomePageView(TemplateView):
 
 
 class LoginUser(LoginView):
-    form_class = AuthenticationForm
+    form_class = AuthenticationUserForm
     template_name = 'login.html'
 
     def form_valid(self, form):
