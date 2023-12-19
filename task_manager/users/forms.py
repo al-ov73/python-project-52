@@ -60,17 +60,10 @@ class ProfileUpdateForm(UserChangeForm):
         widget=forms.PasswordInput(attrs={'class': 'form-input'})
     )
     password2 = forms.CharField(
-        label='Повтор пароля',
+        label='Подтверждение пароля',
         widget=forms.PasswordInput(attrs={'class': 'form-input'})
     )
 
-    labels = {
-        'first_name': 'Имя',
-        'last_name': 'Фамилия',
-        'username': 'Имя пользователя',
-        'password1': 'Пароль',
-        'password2': 'Подтверджение пароля',
-    }
     widgets = {
         'first_name': forms.TextInput(attrs={'class': 'form-input'}),
         'last_name': forms.TextInput(attrs={'class': 'form-input'}),
