@@ -15,6 +15,10 @@ class AuthenticationUserForm(AuthenticationForm):
         widget=forms.TextInput(attrs={'placeholder': 'Пароль'})
     )
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ''
+
     class Meta:
 
         model = User
