@@ -38,13 +38,13 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                'Статус успешно создан.'
+                'Статус успешно создан'
             )
             return redirect('statuses')
         messages.add_message(
             request,
             messages.SUCCESS,
-            'Введите корректные данные.'
+            'Введите корректные данные'
         )
         return render(
             request,
@@ -71,7 +71,7 @@ class StatusFormEditView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Статус успешно изменен.'
+                request, messages.SUCCESS, 'Статус успешно изменен'
             )
             return redirect('statuses')
 
@@ -100,6 +100,6 @@ class StatusFormDeleteView(LoginRequiredMixin, UpdateView):
         if status:
             status.delete()
         messages.add_message(
-            request, messages.SUCCESS, 'Статус успешно удален.'
+            request, messages.SUCCESS, 'Статус успешно удален'
         )
         return redirect('statuses')
