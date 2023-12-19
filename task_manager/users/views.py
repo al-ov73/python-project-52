@@ -40,13 +40,13 @@ class ProfileFormCreateView(CreateView):
             profile.save()
             username = request.POST['username']
             password = request.POST['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
+            # user = authenticate(username=username, password=password)
+            # login(request, user)
             messages.add_message(
                 request, messages.SUCCESS,
                 'Пользователь успешно создан.'
             )
-            return redirect('users')
+            return redirect('login')
         messages.add_message(
             request, messages.SUCCESS, 'Введите корректные данные.'
         )
