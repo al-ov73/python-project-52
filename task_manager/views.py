@@ -39,6 +39,6 @@ class LoginUser(LoginView):
 def logout_view(request):
     logout(request)
     messages.add_message(
-        request, messages.INFO, 'Вы успешно вышли из системы.'
+        request, messages.INFO, 'Вы разлогинены'
     )
     return redirect('index')
