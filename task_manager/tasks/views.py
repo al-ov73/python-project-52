@@ -20,7 +20,7 @@ class IndexView(LoginRequiredMixin, View):
         tasks = TaskFilter(
             request.GET,
             queryset=Task.objects.all(),
-            profile_id=profile.id
+            profile_id=profile.id,
         )
         return render(request, 'tasks/index.html', context={
             # 'tasks': tasks,

@@ -7,14 +7,17 @@ from task_manager.users.models import Profile
 
 class Task(models.Model):
 
-    name = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
-    status = models.ForeignKey(Status, on_delete=models.PROTECT)
+    name = models.CharField(max_length=200, verbose_name="Имя")
+    description = models.CharField(max_length=200, verbose_name="Описание")
+    status = models.ForeignKey(Status, on_delete=models.PROTECT, verbose_name="Статус")
     responsible = models.ForeignKey(
-        Profile, on_delete=models.PROTECT, related_name='responsible'
+        Profile,
+        on_delete=models.PROTECT,
+        related_name='responsible',
+        verbose_name = "Исполнитель"
     )
     author = models.ForeignKey(
-        Profile, on_delete=models.PROTECT, related_name='author'
+        Profile, on_delete=models.PROTECT, related_name='author', verbose_name = "Только свои задачи"
     )
     timestamp = models.DateTimeField(auto_now_add=True, blank=True)
-    label = models.ManyToManyField(Label, blank=True)
+    label = models.ManyToManyField(Label, blank=True, verbose_name = "Метки")
