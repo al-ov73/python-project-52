@@ -8,4 +8,4 @@ class Profile(models.Model):
     USERNAME_FIELD = 'username'
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.first_name} {self.user.last_name}'
