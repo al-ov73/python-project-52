@@ -6,6 +6,18 @@ from task_manager.users.models import Profile
 
 
 class TaskFilter(django_filters.FilterSet):
+
+    status = django_filters.AllValuesFilter(
+        field_name='status__name',
+        label='Статус',
+        label_suffix=''
+    )
+
+    responsible = django_filters.ModelChoiceFilter(
+        queryset=Profile.objects.all(),
+        label_suffix='',
+    )
+
     label = django_filters.AllValuesFilter(
         field_name='label__name',
         label='Метка',
@@ -32,4 +44,8 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
+        # fields = ['status', 'label', 'author']
         fields = ['status', 'responsible', 'label', 'author']
+        labels = {
+            'responsible': 'Исполнитель',
+        }

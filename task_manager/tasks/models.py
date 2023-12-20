@@ -14,7 +14,7 @@ class Task(models.Model):
         Profile,
         on_delete=models.PROTECT,
         related_name='responsible',
-        verbose_name = "Исполнитель"
+        verbose_name = "Исполнитель",
     )
     author = models.ForeignKey(
         Profile, on_delete=models.PROTECT, related_name='author', verbose_name = "Только свои задачи"
