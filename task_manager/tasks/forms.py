@@ -8,6 +8,7 @@ class TaskForm(forms.ModelForm):
         label='Описание',
         widget=forms.Textarea
     )
+
     class Meta:
         model = Task
         fields = ['name', 'description', 'status', 'executor', 'labels']

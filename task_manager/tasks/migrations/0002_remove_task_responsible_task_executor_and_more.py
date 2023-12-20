@@ -21,13 +21,24 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='task',
             name='executor',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.PROTECT, related_name='executor', to='users.profile', verbose_name='Исполнитель'),
+            field=models.ForeignKey(
+                default='',
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='executor',
+                to='users.profile',
+                verbose_name='Исполнитель'
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='task',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='author', to='users.profile', verbose_name='Только свои задачи'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name='author',
+                to='users.profile',
+                verbose_name='Только свои задачи'
+            ),
         ),
         migrations.AlterField(
             model_name='task',
@@ -37,7 +48,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='label',
-            field=models.ManyToManyField(blank=True, to='labels.label', verbose_name='Метки'),
+            field=models.ManyToManyField(
+                blank=True, to='labels.label', verbose_name='Метки'
+            ),
         ),
         migrations.AlterField(
             model_name='task',
@@ -47,6 +60,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='status',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='statuses.status', verbose_name='Статус'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to='statuses.status',
+                verbose_name='Статус'
+            ),
         ),
     ]

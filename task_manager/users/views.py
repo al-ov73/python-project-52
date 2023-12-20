@@ -6,7 +6,7 @@ from django.views.generic import CreateView, UpdateView
 from django.views import View
 from task_manager.users.models import Profile
 from task_manager.users.forms import ProfileUpdateForm, CreateUserForm
-from django.contrib.auth import login, authenticate
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -38,10 +38,8 @@ class ProfileFormCreateView(CreateView):
             profile = Profile(user.id)
             profile.user = user
             profile.save()
-            username = request.POST['username']
-            password = request.POST['password1']
-            # user = authenticate(username=username, password=password)
-            # login(request, user)
+            request.POST['username']
+            request.POST['password1']
             messages.add_message(
                 request, messages.SUCCESS,
                 'Пользователь успешно зарегистрирован'

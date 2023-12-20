@@ -3,11 +3,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext as _
 from django.views.generic.base import TemplateView
-from django.contrib.auth.views import LoginView, AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 
 from django.contrib.auth import login as auth_login
 from task_manager.users.forms import AuthenticationUserForm
+
 
 class HomePageView(TemplateView):
 

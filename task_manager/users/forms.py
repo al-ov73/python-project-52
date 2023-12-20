@@ -1,11 +1,15 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserCreationForm,
+    UserChangeForm
+)
 
-from task_manager.users.models import User, Profile
+from task_manager.users.models import User
 
 
 class AuthenticationUserForm(AuthenticationForm):
-        
+
     username = forms.CharField(
         label='Имя пользователя',
         widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'})
@@ -14,7 +18,7 @@ class AuthenticationUserForm(AuthenticationForm):
         label='Пароль',
         widget=forms.TextInput(attrs={'placeholder': 'Пароль'})
     )
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.label_suffix = ''
@@ -73,8 +77,10 @@ class ProfileUpdateForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.label_suffix = ''
-    
+
     class Meta:
 
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
+        fields = [
+            'first_name', 'last_name', 'username', 'password1', 'password2'
+        ]
