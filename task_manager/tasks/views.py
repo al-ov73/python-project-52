@@ -12,8 +12,8 @@ from task_manager.users.models import Profile
 
 
 class IndexView(LoginRequiredMixin, View):
-
-    filter_backends = (filters.DjangoFilterBackend,)
+    #
+    # filter_backends = (filters.DjangoFilterBackend,)
 
     def get(self, request, *args, **kwargs):
         profile = Profile.objects.get(user=request.user)
