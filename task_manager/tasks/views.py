@@ -3,7 +3,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
-from django_filters import rest_framework as filters
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
@@ -12,8 +11,6 @@ from task_manager.users.models import Profile
 
 
 class IndexView(LoginRequiredMixin, View):
-    #
-    # filter_backends = (filters.DjangoFilterBackend,)
 
     def get(self, request, *args, **kwargs):
         profile = Profile.objects.get(user=request.user)
