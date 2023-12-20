@@ -90,7 +90,7 @@ class TaskView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
         task = Task.objects.get(pk=task_id)
-        labels = task.label.all()
+        labels = task.labels.all()
         return render(request, 'tasks/show.html', context={
             'task': task,
             'labels': labels,
