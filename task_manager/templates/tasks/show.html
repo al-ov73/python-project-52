@@ -23,8 +23,8 @@
         <div class="col">{{ task.author.user.first_name }} {{ task.author.user.last_name }}</div>
       </div>
       <div class="row p-1">
-        <div class="col">{% trans 'Responsible' %}</div>
-        <div class="col">{{ task.responsible.user.first_name }} {{ task.responsible.user.last_name }}</div>
+        <div class="col">Исполнитель</div>
+        <div class="col">{{ task.executor.user.first_name }} {{ task.executor.user.last_name }}</div>
       </div>
       <div class="row p-1">
         <div class="col">{% trans 'Status' %}</div>
