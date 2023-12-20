@@ -114,7 +114,11 @@ class TaskFormDeleteView(LoginRequiredMixin, UpdateView):
         task = Task.objects.get(id=task_id)
         if task:
             task.delete()
-        messages.add_message(
-            request, messages.SUCCESS, 'Задача успешно удалена.'
-        )
+            messages.add_message(
+                request, messages.SUCCESS, 'Задача успешно удалена.'
+            )
+        else:
+            messages.add_message(
+                request, messages.ERROR, 'Такой задачи не существует!'
+            )
         return redirect('tasks')
