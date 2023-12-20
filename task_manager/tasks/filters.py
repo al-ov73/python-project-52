@@ -18,7 +18,7 @@ class TaskFilter(django_filters.FilterSet):
         label_suffix='',
     )
 
-    label = django_filters.AllValuesFilter(
+    labels = django_filters.AllValuesFilter(
         field_name='label__name',
         label='Метка',
         label_suffix='',
@@ -45,7 +45,7 @@ class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         # fields = ['status', 'label', 'author']
-        fields = ['status', 'executor', 'label', 'author']
+        fields = ['status', 'executor', 'labels', 'author']
         labels = {
             'executor': 'Исполнитель',
         }

@@ -77,7 +77,7 @@ class TaskFormEditView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Статус успешно изменен.'
+                request, messages.SUCCESS, 'Задача успешно изменена'
             )
             return redirect('task_show',  task.id)
 

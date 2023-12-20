@@ -20,7 +20,7 @@ class Task(models.Model):
         Profile, on_delete=models.PROTECT, related_name='author', verbose_name = "Только свои задачи"
     )
     timestamp = models.DateTimeField(auto_now_add=True, blank=True)
-    label = models.ManyToManyField(Label, blank=True, verbose_name = "Метки")
+    labels = models.ManyToManyField(Label, blank=True, verbose_name = "Метки")
 
     def __init__(self, *args, **kwargs):
         super(Task, self).__init__(*args, **kwargs)
