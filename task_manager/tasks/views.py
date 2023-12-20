@@ -79,7 +79,7 @@ class TaskFormEditView(LoginRequiredMixin, UpdateView):
             messages.add_message(
                 request, messages.SUCCESS, 'Задача успешно изменена'
             )
-            return redirect('task_show',  task.id)
+            return redirect('tasks')
 
         return render(
             request, 'tasks/update.html', {'form': form, 'pk': task_id}
