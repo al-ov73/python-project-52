@@ -55,7 +55,7 @@ class TestTaskes(TestCase):
             'name': 'task_name',
             'description': 'task_description',
             'status': status.id,
-            'responsible': user.id,
+            'executor': user.id,
         }
         self.client.post('/tasks/create/', task_data, request={'user': user})
         new_task = Task.objects.get(name=task_data['name'])

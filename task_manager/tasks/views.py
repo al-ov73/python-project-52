@@ -40,14 +40,14 @@ class TaskFormCreateView(LoginRequiredMixin, CreateView):
         form = TaskForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            labels = form.cleaned_data['label']
+            labels = form.cleaned_data['labels']
 
             instance.author = Profile.objects.get(
                 user=self.request.user
             )
             instance.save()
             for label in labels:
-                instance.label.add(label)
+                instance.labels.add(label)
             messages.add_message(
                 request, messages.SUCCESS, 'Задача успешно создана.'
             )
