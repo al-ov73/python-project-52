@@ -19,7 +19,7 @@ class TaskFilter(django_filters.FilterSet):
     )
 
     labels = django_filters.AllValuesFilter(
-        field_name='label__name',
+        field_name='labels__name',
         label='Метка',
         label_suffix='',
     )
