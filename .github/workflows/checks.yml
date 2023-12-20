@@ -20,11 +20,13 @@ jobs:
         run: |
           pip install poetry
           poetry install
-      - name: Publish code coverage
+      - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
         env:
+          SECRET_KEY: secret_key
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: poetry run pytest --cov=task_manager --cov-report xml
+          coverageCommand:
+            make coverage
           debug: true
