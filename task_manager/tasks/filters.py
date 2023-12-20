@@ -13,7 +13,7 @@ class TaskFilter(django_filters.FilterSet):
         label_suffix=''
     )
 
-    responsible = django_filters.ModelChoiceFilter(
+    executor = django_filters.ModelChoiceFilter(
         queryset=Profile.objects.all(),
         label_suffix='',
     )
@@ -45,7 +45,7 @@ class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         # fields = ['status', 'label', 'author']
-        fields = ['status', 'responsible', 'label', 'author']
+        fields = ['status', 'executor', 'label', 'author']
         labels = {
-            'responsible': 'Исполнитель',
+            'executor': 'Исполнитель',
         }

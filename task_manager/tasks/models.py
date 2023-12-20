@@ -10,10 +10,10 @@ class Task(models.Model):
     name = models.CharField(max_length=200, verbose_name="Имя")
     description = models.CharField(max_length=200, verbose_name="Описание")
     status = models.ForeignKey(Status, on_delete=models.PROTECT, verbose_name="Статус")
-    responsible = models.ForeignKey(
+    executor = models.ForeignKey(
         Profile,
         on_delete=models.PROTECT,
-        related_name='responsible',
+        related_name='executor',
         verbose_name = "Исполнитель",
     )
     author = models.ForeignKey(
