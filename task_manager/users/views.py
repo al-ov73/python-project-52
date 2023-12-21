@@ -6,6 +6,7 @@ from django.views.generic import CreateView, UpdateView
 from django.views import View
 from task_manager.users.models import Profile
 from task_manager.users.forms import ProfileUpdateForm, CreateUserForm
+from django.utils.translation import gettext as _
 
 import logging
 
@@ -42,11 +43,11 @@ class ProfileFormCreateView(CreateView):
             request.POST['password1']
             messages.add_message(
                 request, messages.SUCCESS,
-                'Пользователь успешно зарегистрирован'
+                _('User registered successfully')
             )
             return redirect('login')
         messages.add_message(
-            request, messages.SUCCESS, 'Введите корректные данные.'
+            request, messages.SUCCESS, _('Enter correct data')
         )
         return render(
             request, 'users/create.html', {'form': form}
@@ -60,7 +61,7 @@ class ProfileFormEditView(UpdateView):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                'Вы не авторизованы! Пожалуйста, выполните вход.'
+                _('You are not autorized! Please login.')
             )
             return redirect('login')
         user_id = kwargs.get('pk')
@@ -68,7 +69,7 @@ class ProfileFormEditView(UpdateView):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                'У вас нет прав для изменения другого пользователя.'
+                _("You don't have access to update other user")
             )
             return redirect('users')
         user = User.objects.get(id=user_id)
@@ -88,7 +89,9 @@ class ProfileFormEditView(UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Пользователь успешно изменен'
+                request,
+                messages.SUCCESS,
+                _('User updated successfully')
             )
             return redirect('users')
 
@@ -122,10 +125,10 @@ class ProfileFormDeleteView(View):
                 messages.add_message(
                     request,
                     messages.ERROR,
-                    'У пользователя есть задачи.'
+                    _('User has tasks')
                 )
                 return redirect('users')
         messages.add_message(
-            request, messages.SUCCESS, 'Пользователь успешно удален.'
+            request, messages.SUCCESS, _('User deleted successfully')
         )
         return redirect('users')

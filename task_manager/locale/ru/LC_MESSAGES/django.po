@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-21 12:13+0300\n"
+"POT-Creation-Date: 2023-12-21 13:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,64 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: labels/views.py:32
+#, fuzzy
+#| msgid "Task manager"
+msgid "Label created successfully"
+msgstr "Создать метку"
+
+#: labels/views.py:36 statuses/views.py:48 tasks/views.py:54 users/views.py:50
+msgid "Enter correct data"
+msgstr "Введите корректные данные"
+
+#: labels/views.py:61
+#, fuzzy
+#| msgid "Label update"
+msgid "Label updated successfully"
+msgstr "Метка успешно изменена"
+
+#: labels/views.py:99
+msgid "Label deleted successfully"
+msgstr "Метка успешно удалена"
+
+#: statuses/views.py:42
+#, fuzzy
+#| msgid "Task delete"
+msgid "Status created successfully"
+msgstr "Статус успешно создан"
+
+#: statuses/views.py:75
+#, fuzzy
+#| msgid "Task manager"
+msgid "Status updated successfully"
+msgstr "Статус успешно изменен"
+
+#: statuses/views.py:104
+#, fuzzy
+#| msgid "Task delete"
+msgid "Status deleted successfully"
+msgstr "Статус успешно удален"
+
+#: tasks/views.py:50
+msgid "Task created successfully"
+msgstr "Задача успешно создана"
+
+#: tasks/views.py:78
+#, fuzzy
+#| msgid "Task manager"
+msgid "Task updated successfully"
+msgstr "Задача успешно изменена"
+
+#: tasks/views.py:116
+#, fuzzy
+#| msgid "Task delete"
+msgid "Task deleted successfully"
+msgstr "Задача успешно удалена"
+
+#: tasks/views.py:120
+msgid "There are no such task"
+msgstr "Такой задачи не существует!"
+
 #: templates/basic.html:41
 msgid "Task manager"
 msgstr "Менеджер задач"
@@ -28,11 +86,12 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/basic.html:56
+#: templates/basic.html:56 templates/statuses/index.html:9
 msgid "Statuses"
 msgstr "Статусы"
 
-#: templates/basic.html:61 templates/tasks/show.html:40
+#: templates/basic.html:61 templates/labels/index.html:9
+#: templates/tasks/show.html:40
 msgid "Labels"
 msgstr "Метки"
 
@@ -64,8 +123,7 @@ msgstr "Практические курсы по программировани�
 msgid "Learn more"
 msgstr "Узнать больше"
 
-#: templates/labels/create.html:8 templates/labels/index.html:9
-#: templates/labels/index.html:13
+#: templates/labels/create.html:8 templates/labels/index.html:13
 #, fuzzy
 #| msgid "Task manager"
 msgid "Label create"
@@ -129,8 +187,7 @@ msgstr "Изменение метки"
 msgid "To login"
 msgstr "Войти"
 
-#: templates/statuses/create.html:8 templates/statuses/index.html:9
-#: templates/statuses/index.html:13
+#: templates/statuses/create.html:8 templates/statuses/index.html:13
 #, fuzzy
 #| msgid "Task delete"
 msgid "Status create"
@@ -223,9 +280,45 @@ msgstr "Полное имя"
 msgid "Modif"
 msgstr "Изменить"
 
+#: users/views.py:46
+msgid "User registered successfully"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: users/views.py:64
+msgid "You are not autorized! Please login."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход"
+
+#: users/views.py:72
+msgid "You don't have access to update other user"
+msgstr "У вас нет прав для изменения другого пользователя"
+
+#: users/views.py:94
+msgid "User updated successfully"
+msgstr "Пользователь успешно изменен"
+
+#: users/views.py:128
+msgid "User has tasks"
+msgstr "У пользователя есть задачи"
+
+#: users/views.py:132
+#, fuzzy
+#| msgid "Task delete"
+msgid "User deleted successfully"
+msgstr "Удаление пользователя"
+
 #: views.py:23
 msgid "Hello"
 msgstr "Это динамический текст"
+
+#: views.py:35
+msgid "You are logged in"
+msgstr "Вы залогинены"
+
+#: views.py:43
+#, fuzzy
+#| msgid "You are logged in"
+msgid "You are logged out"
+msgstr "Вы залогинены"
 
 #, fuzzy
 #~| msgid "Created by"

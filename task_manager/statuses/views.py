@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
+from django.utils.translation import gettext as _
 
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
@@ -38,13 +39,13 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
             messages.add_message(
                 request,
                 messages.SUCCESS,
-                'Статус успешно создан'
+                _('Status created successfully')
             )
             return redirect('statuses')
         messages.add_message(
             request,
             messages.SUCCESS,
-            'Введите корректные данные'
+            _('Enter correct data')
         )
         return render(
             request,
@@ -71,7 +72,7 @@ class StatusFormEditView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Статус успешно изменен'
+                request, messages.SUCCESS, _('Status updated successfully')
             )
             return redirect('statuses')
 
@@ -100,6 +101,6 @@ class StatusFormDeleteView(LoginRequiredMixin, UpdateView):
         if status:
             status.delete()
         messages.add_message(
-            request, messages.SUCCESS, 'Статус успешно удален'
+            request, messages.SUCCESS, _('Status deleted successfully')
         )
         return redirect('statuses')

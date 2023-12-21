@@ -32,7 +32,7 @@ class LoginUser(LoginView):
         """Security check complete. Log the user in."""
         auth_login(self.request, form.get_user())
         messages.add_message(
-            self.request, messages.SUCCESS, 'Вы залогинены'
+            self.request, messages.SUCCESS, _('You are logged in')
         )
         return HttpResponseRedirect(self.get_success_url())
 
@@ -40,6 +40,6 @@ class LoginUser(LoginView):
 def logout_view(request):
     logout(request)
     messages.add_message(
-        request, messages.INFO, 'Вы разлогинены'
+        request, messages.INFO, _('You are logged out')
     )
     return redirect('index')

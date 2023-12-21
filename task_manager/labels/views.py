@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
+from django.utils.translation import gettext as _
 
 from task_manager.labels.forms import LabelForm
 from task_manager.labels.models import Label
@@ -28,11 +29,11 @@ class LabelFormCreateView(LoginRequiredMixin, CreateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Метка успешно создана.'
+                request, messages.SUCCESS, _('Label created successfully')
             )
             return redirect('labels')
         messages.add_message(
-            request, messages.SUCCESS, 'Введите корректные данные.'
+            request, messages.SUCCESS, _('Enter correct data')
         )
         return render(
             request, 'labels/create.html', {'form': form}
@@ -57,7 +58,7 @@ class LabelFormEditView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Метка успешно изменена'
+                request, messages.SUCCESS, _('Label updated successfully')
             )
             return redirect('labels')
 
@@ -88,13 +89,13 @@ class LabelFormDeleteView(LoginRequiredMixin, UpdateView):
             messages.add_message(
                 request,
                 messages.ERROR,
-                f'Невозможно удалить метку \
-                {label.name}. Есть задачи с этой меткой.'
+                f"{_('Impossible to delete label')} \
+                {label.name}. {_('Tasks with this label exists')}"
             )
             return redirect('labels')
         if label:
             label.delete()
         messages.add_message(
-            request, messages.SUCCESS, 'Метка успешно удалена.'
+            request, messages.SUCCESS, _('Label deleted successfully')
         )
         return redirect('labels')

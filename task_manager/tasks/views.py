@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
+from django.utils.translation import gettext as _
 
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
@@ -46,11 +47,11 @@ class TaskFormCreateView(LoginRequiredMixin, CreateView):
             for label in labels:
                 instance.labels.add(label)
             messages.add_message(
-                request, messages.SUCCESS, 'Задача успешно создана.'
+                request, messages.SUCCESS, _('Task created successfully')
             )
             return redirect('tasks')
         messages.add_message(
-            request, messages.SUCCESS, 'Введите корректные данные.'
+            request, messages.SUCCESS, _('Enter correct data')
         )
         return render(
             request, 'tasks/create.html', {'form': form}
@@ -74,7 +75,7 @@ class TaskFormEditView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             form.save()
             messages.add_message(
-                request, messages.SUCCESS, 'Задача успешно изменена'
+                request, messages.SUCCESS, _('Task updated successfully')
             )
             return redirect('tasks')
 
@@ -112,10 +113,10 @@ class TaskFormDeleteView(LoginRequiredMixin, UpdateView):
         if task:
             task.delete()
             messages.add_message(
-                request, messages.SUCCESS, 'Задача успешно удалена.'
+                request, messages.SUCCESS, _('Task deleted successfully')
             )
         else:
             messages.add_message(
-                request, messages.ERROR, 'Такой задачи не существует!'
+                request, messages.ERROR, _('There are no such task')
             )
         return redirect('tasks')
