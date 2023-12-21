@@ -1,5 +1,6 @@
 import django_filters
 from django import forms
+from django.utils.translation import gettext as _
 
 from task_manager.tasks.models import Task
 from task_manager.users.models import Profile
@@ -9,7 +10,7 @@ class TaskFilter(django_filters.FilterSet):
 
     status = django_filters.AllValuesFilter(
         field_name='status__name',
-        label='Статус',
+        label=_('Status'),
         label_suffix=''
     )
 
@@ -20,7 +21,7 @@ class TaskFilter(django_filters.FilterSet):
 
     labels = django_filters.AllValuesFilter(
         field_name='labels__name',
-        label='Метка',
+        label=_('Label'),
         label_suffix='',
     )
     author = django_filters.BooleanFilter(
@@ -46,5 +47,5 @@ class TaskFilter(django_filters.FilterSet):
         model = Task
         fields = ['status', 'executor', 'labels', 'author']
         labels = {
-            'executor': 'Исполнитель',
+            'executor': _('Executor'),
         }

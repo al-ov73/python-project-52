@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-21 13:23+0300\n"
+"POT-Creation-Date: 2023-12-21 14:03+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: labels/forms.py:10 statuses/forms.py:9 templates/labels/index.html:18
+#: templates/statuses/index.html:18 templates/tasks/index.html:31
+#: users/forms.py:53
+msgid "Name"
+msgstr "Имя"
 
 #: labels/views.py:32
 #, fuzzy
@@ -57,6 +63,29 @@ msgstr "Статус успешно изменен"
 #| msgid "Task delete"
 msgid "Status deleted successfully"
 msgstr "Статус успешно удален"
+
+#: tasks/filters.py:13 templates/tasks/index.html:32
+#: templates/tasks/show.html:30
+#, fuzzy
+#| msgid "Statuses"
+msgid "Status"
+msgstr "Статус"
+
+#: tasks/filters.py:24
+#, fuzzy
+#| msgid "Labels"
+msgid "Label"
+msgstr "Метки"
+
+#: tasks/filters.py:50 templates/tasks/show.html:26
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: tasks/forms.py:9
+#, fuzzy
+#| msgid "Registration"
+msgid "Description"
+msgstr "Регистрация"
 
 #: tasks/views.py:50
 msgid "Task created successfully"
@@ -153,11 +182,6 @@ msgstr "Вы уверены, что хотите удалить"
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: templates/labels/index.html:18 templates/statuses/index.html:18
-#: templates/tasks/index.html:31
-msgid "Name"
-msgstr "Имя"
-
 #: templates/labels/index.html:19 templates/statuses/index.html:19
 #: templates/tasks/index.html:35 templates/tasks/show.html:34
 #: templates/users/index.html:16
@@ -222,12 +246,6 @@ msgstr "Удалить задачу"
 msgid "Show"
 msgstr "Показать"
 
-#: templates/tasks/index.html:32 templates/tasks/show.html:30
-#, fuzzy
-#| msgid "Statuses"
-msgid "Status"
-msgstr "Статус"
-
 #: templates/tasks/index.html:33
 msgid "Created by"
 msgstr "Дата создания"
@@ -243,10 +261,6 @@ msgstr "Просмотр задачи"
 #: templates/tasks/show.html:22
 msgid "Author"
 msgstr "Автор"
-
-#: templates/tasks/show.html:26
-msgid "Executor"
-msgstr "Исполнитель"
 
 #: templates/tasks/update.html:8
 #, fuzzy
@@ -266,7 +280,8 @@ msgstr "Зарегистрировать"
 msgid "User delete"
 msgstr "Удаление пользователя"
 
-#: templates/users/index.html:14
+#: templates/users/index.html:14 users/forms.py:15 users/forms.py:16
+#: users/forms.py:60
 #, fuzzy
 #| msgid "Users"
 msgid "Username"
@@ -279,6 +294,18 @@ msgstr "Полное имя"
 #: templates/users/index.html:29
 msgid "Modif"
 msgstr "Изменить"
+
+#: users/forms.py:19 users/forms.py:20 users/forms.py:64
+msgid "Password"
+msgstr "Пароль"
+
+#: users/forms.py:56
+msgid "Surname"
+msgstr "Фамилия"
+
+#: users/forms.py:68
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
 
 #: users/views.py:46
 msgid "User registered successfully"
@@ -329,9 +356,6 @@ msgstr "Вы разлогинены"
 #~| msgid "Create task"
 #~ msgid "Create status"
 #~ msgstr "Создать задачу"
-
-#~ msgid "Surname"
-#~ msgstr "Фамилия"
 
 #~ msgid "Save"
 #~ msgstr "Сохранить"

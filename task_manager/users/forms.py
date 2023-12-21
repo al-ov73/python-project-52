@@ -4,6 +4,7 @@ from django.contrib.auth.forms import (
     UserCreationForm,
     UserChangeForm
 )
+from django.utils.translation import gettext as _
 
 from task_manager.users.models import User
 
@@ -11,12 +12,12 @@ from task_manager.users.models import User
 class AuthenticationUserForm(AuthenticationForm):
 
     username = forms.CharField(
-        label='Имя пользователя',
-        widget=forms.TextInput(attrs={'placeholder': 'Имя пользователя'})
+        label=_('Username'),
+        widget=forms.TextInput(attrs={'placeholder': _('Username')})
     )
     password = forms.CharField(
-        label='Пароль',
-        widget=forms.TextInput(attrs={'placeholder': 'Пароль'})
+        label=_('Password'),
+        widget=forms.TextInput(attrs={'placeholder': _('Password')})
     )
 
     def __init__(self, *args, **kwargs):
@@ -49,22 +50,22 @@ class CreateUserForm(UserCreationForm):
 class ProfileUpdateForm(UserChangeForm):
 
     first_name = forms.CharField(
-        label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'})
+        label=_('Name'), widget=forms.TextInput(attrs={'class': 'form-input'})
     )
     last_name = forms.CharField(
-        label='Фамилия',
+        label=_('Surname'),
         widget=forms.TextInput(attrs={'class': 'form-input'})
     )
     username = forms.CharField(
-        label='Имя пользователя',
+        label=_('Username'),
         widget=forms.TextInput(attrs={'class': 'form-input'})
     )
     password1 = forms.CharField(
-        label='Пароль',
+        label=_('Password'),
         widget=forms.PasswordInput(attrs={'class': 'form-input'})
     )
     password2 = forms.CharField(
-        label='Подтверждение пароля',
+        label=_('Password confirmation'),
         widget=forms.PasswordInput(attrs={'class': 'form-input'})
     )
 
