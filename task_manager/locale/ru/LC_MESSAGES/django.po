@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-21 11:26+0300\n"
+"POT-Creation-Date: 2023-12-21 11:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr "Задачи"
 msgid "Logout"
 msgstr "Выйти"
 
-#: templates/basic.html:91 templates/login.html:9
+#: templates/basic.html:91
 msgid "Login"
 msgstr "Вход"
 
@@ -122,6 +122,12 @@ msgstr "Удалить"
 #: templates/labels/update.html:8
 msgid "Label update"
 msgstr "Изменение метки"
+
+#: templates/login.html:9
+#, fuzzy
+#| msgid "Login"
+msgid "To login"
+msgstr "Войти"
 
 #: templates/statuses/create.html:8 templates/statuses/index.html:9
 #: templates/statuses/index.html:13
@@ -224,11 +230,6 @@ msgstr "Это динамический текст"
 #~| msgid "Create task"
 #~ msgid "Create status"
 #~ msgstr "Создать задачу"
-
-#, fuzzy
-#~| msgid "Login"
-#~ msgid "To login"
-#~ msgstr "Войти"
 
 #~ msgid "Surname"
 #~ msgstr "Фамилия"

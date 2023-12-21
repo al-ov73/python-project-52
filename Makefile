@@ -11,7 +11,7 @@ locale1:
 	cd ..
 
 locale2:
-	django-admin compilemessages
+	django-admin compilemessages --use-fuzzy
 
 migrate:
 	python manage.py makemigrations
