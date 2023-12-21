@@ -72,8 +72,8 @@
             <li class="nav-link">
                 <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-              <input type="hidden" name="extra_submit_param" value="Выход">
-              <input class="btn nav-link" type="submit" value="Выход">
+              <input type="hidden" name="extra_submit_param" value="{% trans 'Logout' %}">
+              <input class="btn nav-link" type="submit" value="{% trans 'Logout' %}">
             </form>
   </ul>
       <ul class="navbar-nav mr-auto">

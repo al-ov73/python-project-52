@@ -11,7 +11,7 @@
 
           <form action="{% url 'label_delete' pk %}" method="post">
             {% csrf_token %}
-          <input type="submit" value="Да, удалить">
+          <input type="submit" value="{% trans 'Yes, delete' %}">
         </form>
 
 {% endblock %}

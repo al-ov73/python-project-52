@@ -5,14 +5,14 @@
 {% load i18n %}
       <h1 class="my-4">
 
-Удаление пользователя
+{% trans 'User delete' %}
 
          </h1>
-<p>Вы уверены, что хотите удалить {{ user.first_name }} {{ user.last_name }}?</p>
+<p>{% trans 'Are you sure, that you want to delete' %} {{ user.first_name }} {{ user.last_name }}?</p>
 
           <form action="{% url 'users_delete' user.id %}" method="post">
             {% csrf_token %}
-          <input type="submit" value="Да, удалить">
+          <input type="submit" value="{% trans 'Yes, delete' %}">
         </form>
 
 {% endblock %}

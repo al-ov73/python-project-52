@@ -5,7 +5,7 @@
 {% load i18n %}
       <h1 class="my-4">
 
-Создать статус
+        {% trans 'Status create' %}
 
       </h1>
     {% if form.errors %}
@@ -27,7 +27,7 @@
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
 
-            <input type="submit" value="Создать">
+            <input type="submit" value="{% trans 'Create' %}">
         </form>
 
 {% endblock %}
