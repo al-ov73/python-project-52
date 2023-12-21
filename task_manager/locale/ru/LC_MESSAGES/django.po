@@ -42,7 +42,7 @@ msgstr "Задачи"
 
 #: templates/basic.html:75 templates/basic.html:76
 msgid "Logout"
-msgstr "Выйти"
+msgstr "Выход"
 
 #: templates/basic.html:91
 msgid "Login"
