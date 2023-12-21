@@ -85,7 +85,7 @@ msgstr "Исполнитель"
 #, fuzzy
 #| msgid "Registration"
 msgid "Description"
-msgstr "Регистрация"
+msgstr "Описание"
 
 #: tasks/views.py:50
 msgid "Task created successfully"
