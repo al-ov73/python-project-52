@@ -24,7 +24,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Task manager"
 msgid "Label created successfully"
-msgstr "Создать метку"
+msgstr "Метка успешно создана"
 
 #: labels/views.py:36 statuses/views.py:48 tasks/views.py:54 users/views.py:50
 msgid "Enter correct data"
