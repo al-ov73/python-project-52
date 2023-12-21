@@ -318,7 +318,7 @@ msgstr "Вы залогинены"
 #, fuzzy
 #| msgid "You are logged in"
 msgid "You are logged out"
-msgstr "Вы залогинены"
+msgstr "Вы разлогинены"
 
 #, fuzzy
 #~| msgid "Created by"
