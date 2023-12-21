@@ -304,7 +304,7 @@ msgstr "У пользователя есть задачи"
 #, fuzzy
 #| msgid "Task delete"
 msgid "User deleted successfully"
-msgstr "Удаление пользователя"
+msgstr "Пользователь успешно удален"
 
 #: views.py:23
 msgid "Hello"
