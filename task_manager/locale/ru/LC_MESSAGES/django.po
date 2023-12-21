@@ -75,7 +75,7 @@ msgstr "Статус"
 #, fuzzy
 #| msgid "Labels"
 msgid "Label"
-msgstr "Метки"
+msgstr "Метка"
 
 #: tasks/filters.py:50 templates/tasks/show.html:26
 msgid "Executor"
