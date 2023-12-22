@@ -8,11 +8,6 @@ class TestLabels(TestCase):
 
     fixtures = ["user.json", "label.json"]
 
-    credentials = {
-        'username': 'Testuser',
-        'email': 'test@test.ru',
-        'password': 'Testpass123',
-    }
 
     label_data = {
         'name': 'label_name',
@@ -21,30 +16,36 @@ class TestLabels(TestCase):
     def test_is_ok_index(self):
 
         # User.objects.create_user(**credentials)
-        self.client.post('/login/', self.credentials, follow=True)
+        credentials = {
+        'username': 'Testuser',
+        'email': 'test@test.ru',
+        'password': 'Testpass123',
+        }
+
+        self.client.post('/login/', credentials, follow=True)
         response = self.client.get('/labels/')
         self.assertEquals(response.status_code, 200)
 
     def test_create_label(self):
 
-        # credentials = {
-        #     'username': 'Testuser',
-        #     'email': 'test@test.ru',
-        #     'password': 'Testpass123',
-        # }
+        credentials = {
+            'username': 'Testuser',
+            'email': 'test@test.ru',
+            'password': 'Testpass123',
+        }
         # User.objects.create_user(**credentials)
-        self.client.post('/login/', self.credentials, follow=True)
+        self.client.post('/login/', credentials, follow=True)
         label = Label.objects.get(id=1)
         self.assertIsInstance(label, Label)
 
     def test_delete_label(self):
-        # credentials = {
-        #     'username': 'Testuser',
-        #     'email': 'test@test.ru',
-        #     'password': 'Testpass123',
-        # }
+        credentials = {
+            'username': 'Testuser',
+            'email': 'test@test.ru',
+            'password': 'Testpass123',
+        }
         # User.objects.create_user(**credentials)
-        self.client.post('/login/', self.credentials, follow=True)
+        self.client.post('/login/', credentials, follow=True)
 
 
         # self.client.post('/labels/create/', self.label_data, follow=True)
