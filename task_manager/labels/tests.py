@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.test import TestCase
 
 from task_manager.labels.models import Label
@@ -7,8 +6,6 @@ from task_manager.labels.models import Label
 class TestLabels(TestCase):
 
     fixtures = ["user.json", "label.json"]
-
-
     label_data = {
         'name': 'label_name',
     }
@@ -17,11 +14,10 @@ class TestLabels(TestCase):
 
         # User.objects.create_user(**credentials)
         credentials = {
-        'username': 'Testuser',
-        'email': 'test@test.ru',
-        'password': 'Testpass123',
+            'username': 'Testuser',
+            'email': 'test@test.ru',
+            'password': 'Testpass123',
         }
-
         self.client.post('/login/', credentials, follow=True)
         response = self.client.get('/labels/')
         self.assertEquals(response.status_code, 200)
@@ -46,13 +42,8 @@ class TestLabels(TestCase):
         }
         # User.objects.create_user(**credentials)
         self.client.post('/login/', credentials, follow=True)
-
-
         # self.client.post('/labels/create/', self.label_data, follow=True)
         label = Label.objects.get(id=1)
         pk = label.id
-        print(pk)
-        print(label)
         self.client.post('/labels/1/delete/')
-        print(label)
         self.assertFalse(Label.objects.filter(id=pk))
