@@ -1,0 +1,9 @@
+[
+{
+    "model": "statuses.status",
+    "pk": 1,
+    "fields": {
+        "name": "status_name"
+    }
+}
+]

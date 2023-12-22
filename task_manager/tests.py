@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 
+from task_manager.users.models import Profile
+
 
 def create_and_login_user(self):
     credentials = {
@@ -8,5 +10,7 @@ def create_and_login_user(self):
         'password': 'Testpass123',
     }
 
-    User.objects.create_user(**credentials)
+    user = User.objects.create_user(**credentials)
+    Profile.objects.create(user=user)
     self.client.post('/login/', credentials, follow=True)
+    return user
