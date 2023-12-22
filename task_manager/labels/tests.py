@@ -1,49 +1,33 @@
 from django.test import TestCase
 
 from task_manager.labels.models import Label
+from task_manager.tests import create_and_login_user
 
 
 class TestLabels(TestCase):
 
-    fixtures = ["user.json", "label.json"]
     label_data = {
         'name': 'label_name',
     }
 
     def test_is_ok_index(self):
 
-        # User.objects.create_user(**credentials)
-        credentials = {
-            'username': 'Testuser',
-            'email': 'test@test.ru',
-            'password': 'Testpass123',
-        }
-        self.client.post('/login/', credentials, follow=True)
+        create_and_login_user(self)
         response = self.client.get('/labels/')
         self.assertEquals(response.status_code, 200)
 
     def test_create_label(self):
 
-        credentials = {
-            'username': 'Testuser',
-            'email': 'test@test.ru',
-            'password': 'Testpass123',
-        }
-        # User.objects.create_user(**credentials)
-        self.client.post('/login/', credentials, follow=True)
-        label = Label.objects.get(id=1)
+        create_and_login_user(self)
+        self.client.post('/labels/create/', self.label_data, follow=True)
+        label = Label.objects.get(name=self.label_data['name'])
         self.assertIsInstance(label, Label)
 
     def test_delete_label(self):
-        credentials = {
-            'username': 'Testuser',
-            'email': 'test@test.ru',
-            'password': 'Testpass123',
-        }
-        # User.objects.create_user(**credentials)
-        self.client.post('/login/', credentials, follow=True)
-        # self.client.post('/labels/create/', self.label_data, follow=True)
-        label = Label.objects.get(id=1)
+
+        create_and_login_user(self)
+        self.client.post('/labels/create/', self.label_data, follow=True)
+        label = Label.objects.get(name='label_name')
         pk = label.id
-        self.client.post('/labels/1/delete/')
-        self.assertFalse(Label.objects.filter(id=pk))
+        self.client.post(f'/labels/{pk}/delete/')
+        self.assertFalse(Label.objects.filter(name='label_name'))

@@ -1,56 +1,34 @@
-from django.contrib.auth.models import User
 from django.test import TestCase
 
 from task_manager.statuses.models import Status
+from task_manager.tests import create_and_login_user
 
 
 class TestStatuses(TestCase):
 
-    def test_is_ok_index(self):
-        credentials = {
-            'username': 'Testuser',
-            'email': 'test@test.ru',
-            'password': 'Testpass123',
-        }
-        User.objects.create_user(**credentials)
-        self.client.post('/login/', credentials, follow=True)
+    status_data = {
+        'name': 'teststatus',
+    }
 
+    def test_is_ok_index(self):
+        create_and_login_user(self)
         response = self.client.get('/statuses/')
         self.assertEquals(response.status_code, 200)
 
     def test_create_status(self):
 
-        credentials = {
-            'username': 'Testuser',
-            'email': 'test@test.ru',
-            'password': 'Testpass123',
-        }
-        User.objects.create_user(**credentials)
-        self.client.post('/login/', credentials, follow=True)
-
-        status_data = {
-            'name': 'teststatus',
-        }
-        self.client.post('/statuses/create/', status_data)
-        status = Status.objects.get(name=status_data['name'])
+        create_and_login_user(self)
+        self.client.post('/statuses/create/', self.status_data)
+        status = Status.objects.get(name=self.status_data['name'])
         self.assertIsInstance(status, Status)
 
     def test_delete_status(self):
-        credentials = {
-            'username': 'Testuser',
-            'email': 'test@test.ru',
-            'password': 'Testpass123',
-        }
-        User.objects.create_user(**credentials)
-        self.client.post('/login/', credentials, follow=True)
 
-        credentials = {
-            'name': 'teststatus',
-        }
+        create_and_login_user(self)
         self.client.post(
-            '/statuses/create/', credentials, follow=True
+            '/statuses/create/', self.status_data, follow=True
         )
-        status = Status.objects.get(name=credentials['name'])
+        status = Status.objects.get(name=self.status_data['name'])
         pk = status.pk
         self.client.post(f'/statuses/{pk}/delete/')
-        self.assertFalse(Status.objects.filter(id=pk))
+        self.assertFalse(Status.objects.filter(name=self.status_data['name']))
