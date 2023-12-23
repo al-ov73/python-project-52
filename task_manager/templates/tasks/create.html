@@ -22,11 +22,13 @@
             {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}" />
     <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <label class="form-label">{{f.label}}</label>
-       <p > {{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
+        {% for field in form %}
+        <div class="form-group">
+            {{field.label}}
+            <div>{{field}}</div>
+            <div class="error">{{field.errors}}</div>
+        </div>
+        {% endfor %}
 
             <input type="submit" class="btn btn-primary mb-3" value="{% trans 'Create' %}">
         </form>
