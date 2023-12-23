@@ -1,5 +1,6 @@
 import django_filters
 from django import forms
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
 from task_manager.tasks.models import Task
@@ -10,8 +11,10 @@ class TaskFilter(django_filters.FilterSet):
 
     status = django_filters.AllValuesFilter(
         field_name='status__name',
+        # label=mark_safe(f"{_('Status')}<br/>"),
         label=_('Status'),
-        label_suffix=''
+        label_suffix='',
+        widget=forms.Select
     )
 
     executor = django_filters.ModelChoiceFilter(

@@ -16,7 +16,12 @@
   <div class="card-body bg-light">
     <form class="form-inline center" method="get">
 
-        {{ filter.form.as_p }}
+    {% for f in filter.form %}
+    <p ><label class="form-label">{{f.label}}</label><br>
+      {{ f }}
+    </p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
 
        <input class="btn btn-primary" type="submit" value="{% trans 'Show' %}">
     </form>

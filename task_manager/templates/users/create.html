@@ -19,7 +19,7 @@
     <input type="hidden" name="next" value="{{ next }}" />
     <div class="form-error">{{ form.non_field_errors }}</div>
     {% for f in form %}
-    <p ><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}</label>    {{ f }}</p>
+    <p ><label class="form-label">{{f.label}}</label> <br>   {{ f }}</p>
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
     <p ><button type="submit" class="btn btn-primary mb-3">{% trans 'Registrate' %}</button></p>

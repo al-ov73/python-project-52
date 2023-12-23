@@ -32,7 +32,7 @@
             </form>
           <form action="{% url 'status_delete' status.id %}" method="get">
             {% csrf_token %}
-          <input type="submit" class="btn btn-primary mb-3" value="{% trans 'Delete' %}">
+          <input type="submit" value="{% trans 'Delete' %}">
             </form>
       </td>
     </tr>
