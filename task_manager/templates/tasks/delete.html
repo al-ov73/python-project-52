@@ -11,7 +11,7 @@
 
           <form action="{% url 'task_delete' pk %}" method="post">
             {% csrf_token %}
-          <input type="submit" value="{% trans 'Yes, delete' %}">
+          <input type="submit" class="btn btn-primary mb-3" value="{% trans 'Yes, delete' %}">
         </form>
 
 {% endblock %}
