@@ -15,9 +15,14 @@ class AuthenticationUserForm(AuthenticationForm):
         label=_('Username'),
         widget=forms.TextInput(attrs={'placeholder': _('Username')})
     )
+
     password = forms.CharField(
         label=_('Password'),
-        widget=forms.TextInput(attrs={'placeholder': _('Password')})
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={'placeholder': _('Password'),
+                   "autocomplete": "current-password"}
+        )
     )
 
     def __init__(self, *args, **kwargs):
