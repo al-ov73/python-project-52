@@ -1,6 +1,5 @@
 import django_filters
 from django import forms
-from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
 from task_manager.tasks.models import Task
