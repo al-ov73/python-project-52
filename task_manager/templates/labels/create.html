@@ -22,10 +22,10 @@
             {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}" />
     <div class="form-error">{{ form.non_field_errors }}</div>
-         {% for field in form %}
+        {% for field in form %}
         <div class="form-group">
-            {{field.label}}
-            <div>{{field}}</div>
+           <p>{{field.label}}
+            {{field}}</p>
             <div class="error">{{field.errors}}</div>
         </div>
         {% endfor %}
