@@ -12,6 +12,7 @@ class TestLabels(TestCase):
     updated_label_data = {
         'name': 'updated_label_name',
     }
+
     def test_is_ok_index(self):
 
         create_and_login_user(self)
