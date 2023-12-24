@@ -1,8 +1,9 @@
 {% extends "basic.html" %}
 
+{% load django_bootstrap5 %}
+{% load i18n %}
 
 {% block content %}
-{% load i18n %}
 
     {% if form.errors %}
     <div>
@@ -17,10 +18,7 @@
         <form action="{% url 'users_update' pk=user_id %}" method="post">
             {% csrf_token %}
             <table border="1">
-                {% for f in form %}
-                <p ><label class="form-label" for="{{ f.id_for_label }}">{{f.label}} </label>{{ f }}</p>
-                <div class="form-error">{{ f.errors }}</div>
-                {% endfor %}
+ {% bootstrap_form form %}
             </table>
             <input type="submit" class="btn btn-primary mb-3" value="{% trans 'Update' %}">
         </form>

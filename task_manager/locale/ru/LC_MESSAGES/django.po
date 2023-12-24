@@ -248,11 +248,11 @@ msgstr "Показать"
 
 #: templates/tasks/index.html:33
 msgid "Created by"
-msgstr "Дата создания"
+msgstr "Автор"
 
 #: templates/tasks/index.html:34
 msgid "Responsible"
-msgstr "Ответственный"
+msgstr "Исполнитель"
 
 #: templates/tasks/show.html:9
 msgid "Task detail"
