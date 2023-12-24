@@ -9,6 +9,9 @@ class TestStatuses(TestCase):
     status_data = {
         'name': 'teststatus',
     }
+    updated_status_data = {
+        'name': 'updated_teststatus',
+    }
 
     def test_is_ok_index(self):
         create_and_login_user(self)
@@ -21,6 +24,20 @@ class TestStatuses(TestCase):
         self.client.post('/statuses/create/', self.status_data)
         status = Status.objects.get(name=self.status_data['name'])
         self.assertIsInstance(status, Status)
+
+    def test_update_status(self):
+
+        create_and_login_user(self)
+        self.client.post('/statuses/create/', self.status_data, follow=True)
+        status = Status.objects.get(name=self.status_data['name'])
+        pk = status.id
+        self.client.post(
+            f'/statuses/{pk}/update/', self.updated_status_data, follow=True
+        )
+        self.assertFalse(Status.objects.filter(name=self.status_data['name']))
+        self.assertTrue(
+            Status.objects.filter(name=self.updated_status_data['name'])
+        )
 
     def test_delete_status(self):
 
