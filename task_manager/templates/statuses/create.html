@@ -1,8 +1,9 @@
 {% extends "basic.html" %}
 
+{% load django_bootstrap5 %}
+{% load i18n %}
 
 {% block content %}
-{% load i18n %}
       <h1 class="my-4">
 
         {% trans 'Status create' %}
@@ -18,16 +19,14 @@
     </div>
     {% endif %}
 
-        <form action="{% url 'status_create' %}" method="post">
-            {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p ><label class="form-label" for="{{ f.id_for_label }}">{{f.label}} </label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
+<form action="{% url 'status_create' %}" method="post">
+  {% csrf_token %}
 
-            <input type="submit" class="btn btn-primary mb-3" value="{% trans 'Create' %}">
-        </form>
+  {% bootstrap_form form %}
+
+  <input type="submit" class="btn btn-primary mb-3" value="{% trans 'Create' %}">
+
+</form>
+
 
 {% endblock %}
