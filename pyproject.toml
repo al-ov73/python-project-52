@@ -18,13 +18,15 @@ whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 gunicorn = "^21.2.0"
 python-dotenv = "^1.0.0"
 django-bootstrap5 = "^23.3"
-logging = "^0.4.9.6"
 django-filter = "^23.5"
 django-extensions = "^3.2.3"
+
+
+[tool.poetry.group.dev.dependencies]
+logging = "^0.4.9.6"
+coverage = "^7.3.4"
 flake8 = "4.0.1"
 rollbar = "0.16.3"
-coverage = "^7.3.4"
-
 
 [build-system]
 requires = ["poetry-core"]
