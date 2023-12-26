@@ -61,7 +61,7 @@ EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', default='your secret key')
 EMAIL_HOST_PASSWORD = os.environ.get(
-'EMAIL_HOST_PASSWORD', default='your secret key'
+    'EMAIL_HOST_PASSWORD', default='your secret key'
 )
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
@@ -249,4 +249,3 @@ LOGGING = {
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
-# CELERY_IMPORTS = ("task_manager.tasks", "tasks")

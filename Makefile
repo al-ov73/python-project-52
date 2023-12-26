@@ -26,8 +26,8 @@ coverage:
 celery:
 	python -m celery -A task_manager worker --loglevel=DEBUG
 
-redis start:
+redis-start:
 	redis-server
 
-redis stop:
+redis-stop:
 	sudo server redis-server stop
