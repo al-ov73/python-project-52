@@ -20,6 +20,7 @@ python-dotenv = "^1.0.0"
 django-bootstrap5 = "^23.3"
 django-filter = "^23.5"
 django-extensions = "^3.2.3"
+redis = "^5.0.1"
 
 
 [tool.poetry.group.dev.dependencies]

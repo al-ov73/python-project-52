@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
 from django.utils.translation import gettext as _
+import redis
+import pickle
 
 from task_manager.labels.forms import LabelForm
 from task_manager.labels.models import Label
@@ -43,8 +45,19 @@ class LabelFormCreateView(LoginRequiredMixin, CreateView):
 class LabelFormEditView(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         label_id = kwargs.get('pk')
-        label = Label.objects.get(id=label_id)
-        form = LabelForm(instance=label)
+        r = redis.StrictRedis(host='localhost', port=6379, db=0)
+        try:
+            if r.get(f'label_{label_id}'):
+                unpacked_label = pickle.loads(r.get(f'label_{label_id}'))
+                form = LabelForm(instance=unpacked_label)
+            else:
+                label = Label.objects.get(id=label_id)
+                pickled_label = pickle.dumps(label)
+                r.set(f'label_{label_id}', pickled_label)
+                form = LabelForm(instance=label)
+        except redis.ConnectionError:
+            label = Label.objects.get(id=label_id)
+            form = LabelForm(instance=label)
         return render(
             request,
             'labels/update.html',

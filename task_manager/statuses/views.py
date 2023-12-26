@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
 from django.utils.translation import gettext as _
+import redis
+import pickle
 
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
@@ -57,8 +59,19 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
 class StatusFormEditView(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
-        status = Status.objects.get(id=status_id)
-        form = StatusForm(instance=status)
+        r = redis.StrictRedis(host='localhost', port=6379, db=0)
+        try:
+            if r.get(f'status_{status_id}'):
+                unpacked_status = pickle.loads(r.get(f'status_{status_id}'))
+                form = StatusForm(instance=unpacked_status)
+            else:
+                status = Status.objects.get(id=status_id)
+                pickled_status = pickle.dumps(status)
+                r.set(f'status_{status_id}', pickled_status)
+                form = StatusForm(instance=status)
+        except redis.ConnectionError:
+            status = Status.objects.get(id=status_id)
+            form = StatusForm(instance=status)
         return render(
             request,
             'statuses/update.html',
