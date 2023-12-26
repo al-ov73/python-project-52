@@ -42,7 +42,8 @@ class ProfileFormCreateView(CreateView):
             profile = Profile(user.id)
             profile.user = user
             name_mail = f'{profile.user.first_name} {profile.user.last_name}'
-            send_mail_to_newuser.delay(name_mail)
+            if name_mail:
+                send_mail_to_newuser.delay(name_mail)
             messages.add_message(
                 request, messages.SUCCESS,
                 'Вам был отправлен Email'
