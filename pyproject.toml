@@ -21,6 +21,7 @@ django-bootstrap5 = "^23.3"
 django-filter = "^23.5"
 django-extensions = "^3.2.3"
 redis = "^5.0.1"
+celery = "^5.3.6"
 
 
 [tool.poetry.group.dev.dependencies]

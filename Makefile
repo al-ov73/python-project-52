@@ -22,3 +22,6 @@ lint:
 
 coverage:
 	poetry run coverage run --source='.' manage.py test task_manager.tests && poetry run coverage xml
+
+celery:
+	python -m celery -A task_manager worker --loglevel=DEBUG
