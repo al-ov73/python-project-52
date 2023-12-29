@@ -1,12 +1,14 @@
 {% extends "basic.html" %}
 
-{% block content %}
+{% load django_bootstrap5 %}
 {% load i18n %}
+
+{% block content %}
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary mb-3">{% trans 'To login' %}</button>
 </form>
-
+{% trans "Don't have account?" %} <a href="/users/create/">{% trans 'Registration' %}</a>
 {% endblock %}

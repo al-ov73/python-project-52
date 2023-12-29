@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-21 14:03+0300\n"
+"POT-Creation-Date: 2023-12-29 14:14+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,63 +21,63 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: labels/forms.py:10 statuses/forms.py:9 templates/labels/index.html:18
-#: templates/statuses/index.html:18 templates/tasks/index.html:31
-#: users/forms.py:53
+#: templates/statuses/index.html:18 templates/tasks/index.html:32
+#: users/forms.py:58
 msgid "Name"
 msgstr "Имя"
 
-#: labels/views.py:32
+#: labels/views.py:34
 #, fuzzy
 #| msgid "Task manager"
 msgid "Label created successfully"
 msgstr "Метка успешно создана"
 
-#: labels/views.py:36 statuses/views.py:48 tasks/views.py:54 users/views.py:50
+#: labels/views.py:38 statuses/views.py:50 tasks/views.py:54 users/views.py:61
 msgid "Enter correct data"
 msgstr "Введите корректные данные"
 
-#: labels/views.py:61
+#: labels/views.py:74
 #, fuzzy
 #| msgid "Label update"
 msgid "Label updated successfully"
 msgstr "Метка успешно изменена"
 
-#: labels/views.py:99
+#: labels/views.py:112
 msgid "Label deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: statuses/views.py:42
+#: statuses/views.py:44
 #, fuzzy
 #| msgid "Task delete"
 msgid "Status created successfully"
 msgstr "Статус успешно создан"
 
-#: statuses/views.py:75
+#: statuses/views.py:88
 #, fuzzy
 #| msgid "Task manager"
 msgid "Status updated successfully"
 msgstr "Статус успешно изменен"
 
-#: statuses/views.py:104
+#: statuses/views.py:117
 #, fuzzy
 #| msgid "Task delete"
 msgid "Status deleted successfully"
 msgstr "Статус успешно удален"
 
-#: tasks/filters.py:13 templates/tasks/index.html:32
+#: tasks/filters.py:14 templates/tasks/index.html:33
 #: templates/tasks/show.html:30
 #, fuzzy
 #| msgid "Statuses"
 msgid "Status"
 msgstr "Статус"
 
-#: tasks/filters.py:24
+#: tasks/filters.py:26
 #, fuzzy
 #| msgid "Labels"
 msgid "Label"
 msgstr "Метка"
 
-#: tasks/filters.py:50 templates/tasks/show.html:26
+#: tasks/filters.py:52 templates/tasks/show.html:26
 msgid "Executor"
 msgstr "Исполнитель"
 
@@ -107,7 +107,7 @@ msgstr "Задача успешно удалена"
 msgid "There are no such task"
 msgstr "Такой задачи не существует!"
 
-#: templates/basic.html:41
+#: templates/basic.html:41 templates/index.html:16
 msgid "Task manager"
 msgstr "Менеджер задач"
 
@@ -124,7 +124,7 @@ msgstr "Статусы"
 msgid "Labels"
 msgstr "Метки"
 
-#: templates/basic.html:66 templates/tasks/index.html:9
+#: templates/basic.html:66 templates/tasks/index.html:10
 msgid "Tasks"
 msgstr "Задачи"
 
@@ -136,30 +136,26 @@ msgstr "Выход"
 msgid "Login"
 msgstr "Вход"
 
-#: templates/basic.html:96
+#: templates/basic.html:96 templates/login.html:13
 msgid "Registration"
 msgstr "Регистрация"
 
-#: templates/index.html:16
-msgid "Hello from Hexlet!"
-msgstr "Привет от Хекслета!"
-
 #: templates/index.html:17
-msgid "Programming courses"
-msgstr "Практические курсы по программированию"
+msgid "Task manager for your organization to control projects distribution"
+msgstr "Управляйте задачами сотрудников Вашей организации"
 
 #: templates/index.html:20
-msgid "Learn more"
-msgstr "Узнать больше"
+msgid "Try"
+msgstr "Попробовать"
 
-#: templates/labels/create.html:8 templates/labels/index.html:13
+#: templates/labels/create.html:9 templates/labels/index.html:13
 #, fuzzy
 #| msgid "Task manager"
 msgid "Label create"
 msgstr "Создать метку"
 
-#: templates/labels/create.html:30 templates/statuses/create.html:30
-#: templates/tasks/create.html:30
+#: templates/labels/create.html:28 templates/statuses/create.html:27
+#: templates/tasks/create.html:29
 msgid "Create"
 msgstr "Создать"
 
@@ -183,35 +179,39 @@ msgid "Yes, delete"
 msgstr "Да, удалить"
 
 #: templates/labels/index.html:19 templates/statuses/index.html:19
-#: templates/tasks/index.html:35 templates/tasks/show.html:34
+#: templates/tasks/index.html:36 templates/tasks/show.html:34
 #: templates/users/index.html:16
 msgid "Date of creation"
 msgstr "Дата создания"
 
-#: templates/labels/index.html:31 templates/labels/update.html:30
-#: templates/statuses/index.html:31 templates/statuses/update.html:30
-#: templates/tasks/index.html:51 templates/tasks/show.html:51
-#: templates/tasks/update.html:30 templates/users/update.html:25
+#: templates/labels/index.html:31 templates/labels/update.html:29
+#: templates/statuses/index.html:31 templates/statuses/update.html:29
+#: templates/tasks/index.html:52 templates/tasks/show.html:51
+#: templates/tasks/update.html:29 templates/users/update.html:23
 msgid "Update"
 msgstr "Изменить"
 
 #: templates/labels/index.html:35 templates/statuses/index.html:35
-#: templates/tasks/index.html:55 templates/tasks/show.html:53
+#: templates/tasks/index.html:56 templates/tasks/show.html:53
 #: templates/users/index.html:33
 msgid "Delete"
 msgstr "Удалить"
 
-#: templates/labels/update.html:8
+#: templates/labels/update.html:9
 msgid "Label update"
 msgstr "Изменение метки"
 
-#: templates/login.html:9
+#: templates/login.html:11
 #, fuzzy
 #| msgid "Login"
 msgid "To login"
 msgstr "Войти"
 
-#: templates/statuses/create.html:8 templates/statuses/index.html:13
+#: templates/login.html:13
+msgid "Don't have account?"
+msgstr "Пока нет аккаунта?"
+
+#: templates/statuses/create.html:9 templates/statuses/index.html:13
 #, fuzzy
 #| msgid "Task delete"
 msgid "Status create"
@@ -228,13 +228,13 @@ msgstr "Удаление статуса"
 msgid "Are you sure, that you want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: templates/statuses/update.html:8
+#: templates/statuses/update.html:9
 #, fuzzy
 #| msgid "Task manager"
 msgid "Status update"
 msgstr "Изменение статуса"
 
-#: templates/tasks/create.html:8 templates/tasks/index.html:13
+#: templates/tasks/create.html:9 templates/tasks/index.html:14
 msgid "Create task"
 msgstr "Создать задачу"
 
@@ -242,15 +242,15 @@ msgstr "Создать задачу"
 msgid "Task delete"
 msgstr "Удалить задачу"
 
-#: templates/tasks/index.html:21
+#: templates/tasks/index.html:22
 msgid "Show"
 msgstr "Показать"
 
-#: templates/tasks/index.html:33
+#: templates/tasks/index.html:34
 msgid "Created by"
 msgstr "Автор"
 
-#: templates/tasks/index.html:34
+#: templates/tasks/index.html:35
 msgid "Responsible"
 msgstr "Исполнитель"
 
@@ -262,7 +262,7 @@ msgstr "Просмотр задачи"
 msgid "Author"
 msgstr "Автор"
 
-#: templates/tasks/update.html:8
+#: templates/tasks/update.html:9
 #, fuzzy
 #| msgid "Task manager"
 msgid "Task update"
@@ -281,7 +281,7 @@ msgid "User delete"
 msgstr "Удаление пользователя"
 
 #: templates/users/index.html:14 users/forms.py:15 users/forms.py:16
-#: users/forms.py:60
+#: users/forms.py:65
 #, fuzzy
 #| msgid "Users"
 msgid "Username"
@@ -295,39 +295,39 @@ msgstr "Полное имя"
 msgid "Modif"
 msgstr "Изменить"
 
-#: users/forms.py:19 users/forms.py:20 users/forms.py:64
+#: users/forms.py:20 users/forms.py:23 users/forms.py:69
 msgid "Password"
 msgstr "Пароль"
 
-#: users/forms.py:56
+#: users/forms.py:61
 msgid "Surname"
 msgstr "Фамилия"
 
-#: users/forms.py:68
+#: users/forms.py:73
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: users/views.py:46
+#: users/views.py:57
 msgid "User registered successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: users/views.py:64
+#: users/views.py:75
 msgid "You are not autorized! Please login."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход"
 
-#: users/views.py:72
+#: users/views.py:83
 msgid "You don't have access to update other user"
 msgstr "У вас нет прав для изменения другого пользователя"
 
-#: users/views.py:94
+#: users/views.py:105
 msgid "User updated successfully"
 msgstr "Пользователь успешно изменен"
 
-#: users/views.py:128
+#: users/views.py:139
 msgid "User has tasks"
 msgstr "У пользователя есть задачи"
 
-#: users/views.py:132
+#: users/views.py:143
 #, fuzzy
 #| msgid "Task delete"
 msgid "User deleted successfully"
@@ -346,6 +346,15 @@ msgstr "Вы залогинены"
 #| msgid "You are logged in"
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "Hello from Hexlet!"
+#~ msgstr "Привет от Хекслета!"
+
+#~ msgid "Programming courses"
+#~ msgstr "Практические курсы по программированию"
+
+#~ msgid "Learn more"
+#~ msgstr "Узнать больше"
 
 #, fuzzy
 #~| msgid "Created by"

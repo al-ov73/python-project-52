@@ -6,9 +6,7 @@ test:
 
 
 locale1:
-	cd task_manager
 	django-admin makemessages --all
-	cd ..
 
 locale2:
 	django-admin compilemessages --use-fuzzy
