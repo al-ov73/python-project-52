@@ -14,10 +14,19 @@
 <div class="card">
   <div class="card-body p-5 bg-light">
     <div class="display-4">{% trans 'Task manager' %}</div>
-    <p class="lead">{% trans 'Task manager for your organization to control projects distribution' %}</p>
-      <br>
 
-    <a class="btn btn-primary btn-lg" href="/login/">{% trans 'Try' %}</a>
+       {% if request.user.is_authenticated %}
+      <br>
+      <p class="lead">{% trans 'Total users' %}: {{ users }}</p>
+      <p class="lead">{% trans 'Total tasks' %}: {{ tasks }}</p>
+      <p class="lead">{% trans 'Users without tasks' %}: {{ free_users }}</p>
+
+      {% else %}
+      <p class="lead">{% trans 'Task manager for your organization to control projects distribution' %}</p>
+      <br>
+      <a class="btn btn-primary btn-lg" href="/login/">{% trans 'Try' %}</a>
+      {% endif %}
+
   </div>
 </div>
   </div>

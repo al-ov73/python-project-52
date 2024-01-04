@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_bootstrap5',
     'django_filters',
+    'sorl.thumbnail',
     'task_manager',
     'task_manager.labels',
     'task_manager.users',
@@ -162,6 +163,9 @@ USE_TZ = True
 
 STATIC_URL = 'task_manager/templates/src/'
 STATICFILES_DIRS = [BASE_DIR / 'task_manager/templates/src']
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

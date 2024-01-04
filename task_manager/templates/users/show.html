@@ -1,0 +1,44 @@
+{% extends "basic.html" %}
+
+
+{% block content %}
+{% load i18n %}
+{% load static %}
+
+      <h1 class="my-4">
+
+Профиль пользователя {{ profile.user.username }}
+
+      </h1>
+
+{% load thumbnail %}
+
+
+{% thumbnail profile.profile_pic "200" as im %}
+
+    <img src="{{ im.url }}">
+{% empty %}
+    <img src="{% static 'default.jpg' %}" width="200" height="200">
+{% endthumbnail %}
+
+<div class="card">
+
+  <div class="card-header bg-secondary text-white">
+    <h2>Имя: {{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+  </div>
+
+  <div class="card-body bg-light">
+    <p>Зарегистрирован: {{ profile.user.date_joined }}</p>
+  </div>
+  <div class="card-body bg-light">
+    <p>Назначил задач: {{ tasks_author }}</p>
+  </div>
+  <div class="card-body bg-light">
+    <p>Исполняет задач: {{ tasks_executed }}</p>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -40,6 +40,8 @@ class AuthenticationUserForm(AuthenticationForm):
 
 class CreateUserForm(UserCreationForm):
 
+    avatar = forms.ImageField(label="Изображение", required=False)
+
     class Meta:
 
         model = User

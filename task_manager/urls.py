@@ -1,7 +1,7 @@
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from task_manager import views
-
+from task_manager import views, settings
 
 urlpatterns = [
     path('login/', views.LoginUser.as_view(), name='login'),
@@ -13,3 +13,9 @@ urlpatterns = [
     path('tasks/', include('task_manager.tasks.urls')),
     path('', views.HomePageView.as_view(), name='index'),
 ]
+
+if settings.LOCAL_DEBUG:
+    print('LOCAL DEBUG!!')
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )

@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-29 14:14+0400\n"
+"POT-Creation-Date: 2024-01-02 21:08+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,11 +140,27 @@ msgstr "Вход"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: templates/index.html:17
+#: templates/index.html:20
+msgid "Total users"
+msgstr "Всего пользователей"
+
+#: templates/index.html:21
+#, fuzzy
+#| msgid "Tasks"
+msgid "Total tasks"
+msgstr "Всего задач"
+
+#: templates/index.html:22
+#, fuzzy
+#| msgid "User has tasks"
+msgid "Users without tasks"
+msgstr "Пользователей без задач"
+
+#: templates/index.html:25
 msgid "Task manager for your organization to control projects distribution"
 msgstr "Управляйте задачами сотрудников Вашей организации"
 
-#: templates/index.html:20
+#: templates/index.html:27
 msgid "Try"
 msgstr "Попробовать"
 
@@ -333,19 +349,18 @@ msgstr "У пользователя есть задачи"
 msgid "User deleted successfully"
 msgstr "Пользователь успешно удален"
 
-#: views.py:23
-msgid "Hello"
-msgstr "Это динамический текст"
-
-#: views.py:35
+#: views.py:45
 msgid "You are logged in"
 msgstr "Вы залогинены"
 
-#: views.py:43
+#: views.py:53
 #, fuzzy
 #| msgid "You are logged in"
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "Hello"
+#~ msgstr "Это динамический текст"
 
 #~ msgid "Hello from Hexlet!"
 #~ msgstr "Привет от Хекслета!"

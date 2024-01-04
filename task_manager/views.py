@@ -7,7 +7,10 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
 
 from django.contrib.auth import login as auth_login
+
+from task_manager.tasks.models import Task
 from task_manager.users.forms import AuthenticationUserForm
+from task_manager.users.models import Profile
 
 
 class HomePageView(TemplateView):
@@ -20,7 +23,14 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['hello'] = _('Hello')
+        total_users = Profile.objects.count()
+        context['users'] = total_users
+        context['tasks'] = Task.objects.count()
+        tasks = Task.objects.all()
+        users = set()
+        for task in tasks:
+            users.add(task.executor)
+        context['free_users'] = total_users - len(users)
         return context
 
 

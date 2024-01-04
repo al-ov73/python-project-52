@@ -14,15 +14,17 @@
       <th>{% trans 'Username' %}</th>
       <th>{% trans 'Full  name' %}</th>
       <th>{% trans 'Date of creation' %}</th>
+      <th>{% trans 'Tasks' %}</th>
       <th></th>
     </tr>
     <tbody>
     {% for user in users %}
     <tr>
       <td>{{ user.id }}</td>
-      <td>{{ user.user.username }}</td>
+      <td><a href="{% url 'users_show' user.id %}">{{ user.user.username }}</a></td>
       <td>{{ user.user.first_name }} {{ user.user.last_name }}</td>
       <td>{{ user.user.date_joined }}</td>
+      <td>{{ user.executor__count }}</td>
       <td>
           <form action="{% url 'users_update' user.id %}" method="get">
             {% csrf_token %}
