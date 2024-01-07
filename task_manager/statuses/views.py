@@ -1,3 +1,4 @@
+import telepot
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -7,6 +8,7 @@ from django.utils.translation import gettext as _
 import redis
 import pickle
 
+from task_manager import settings
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
 
@@ -43,6 +45,9 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
                 messages.SUCCESS,
                 _('Status created successfully')
             )
+            bot = telepot.Bot(token=settings.BOT_TOKEN)
+            msg = f"new status created"
+            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg, parse_mode='MARKDOWN')
             return redirect('statuses')
         messages.add_message(
             request,

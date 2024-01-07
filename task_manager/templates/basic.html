@@ -76,12 +76,7 @@
               <input class="btn nav-link" type="submit" value="{% trans 'Logout' %}">
             </form>
   </ul>
-      <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <div class="nav-link" >{{user.username}}<span class="sr-only"></span></div>
-            </li>
 
-  </ul>
 
 
         {% else %}
@@ -96,15 +91,26 @@
         <a class="nav-link" href="/users/create/">{% trans 'Registration' %}<span class="sr-only"></span></a>
       </li>
             </ul>
-
 {% endif %}
-
-
-
   </div>
 
-<div class='d-flex justify-content-end'>
-<li class="nav-link d-flex justify-content-end"><a href="/admin">Admin panel</a></li>
+{% if request.user.is_authenticated %}
+              <ul class="navbar-nav justify-content-center">
+            <li class="nav-item active">
+                <span class="nav-link" >Вы вошли как: {{user.username}}<span class="sr-only"></span></span>
+            </li>
+  </ul>
+        {% endif %}
+<div class='d-flex justify-content-end navbar-nav'>
+      <li class="nav-item active">
+        <a class="nav-link" href="/swagger">Api Doc<span class="sr-only"></span></a>
+      </li>
+</div>
+
+<div class='d-flex justify-content-end navbar-nav'>
+    <li class="nav-item active">
+        <a class="nav-link" href="/admin">Admin panel<span class="sr-only"></span></a>
+    </li>
 </div>
 
 </nav>

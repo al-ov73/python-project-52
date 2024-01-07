@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     'django_bootstrap5',
     'django_filters',
     'sorl.thumbnail',
+    'rest_framework',
     'task_manager',
     'task_manager.labels',
     'task_manager.users',
@@ -72,8 +74,10 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
-        ...
     ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
 }
 
 MIDDLEWARE = [
@@ -166,6 +170,10 @@ STATICFILES_DIRS = [BASE_DIR / 'task_manager/templates/src']
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+BOT_URL = 'https://api.telegram.org/bot%s/' % BOT_TOKEN
+BOT_CHAT_ID = os.getenv('BOT_CHAT_ID')
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
