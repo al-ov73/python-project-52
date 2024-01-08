@@ -1,14 +1,10 @@
-import telepot
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 from django.views import View
 from django.utils.translation import gettext as _
-import redis
-import pickle
 
-from task_manager import settings
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
 
@@ -45,10 +41,6 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
                 messages.SUCCESS,
                 _('Status created successfully')
             )
-            bot = telepot.Bot(token=settings.BOT_TOKEN)
-            msg = f"new status '{request.POST.get('name')}' created"
-            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg,
-                            parse_mode='MARKDOWN')
             return redirect('statuses')
         messages.add_message(
             request,
@@ -65,19 +57,8 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
 class StatusFormEditView(LoginRequiredMixin, UpdateView):
     def get(self, request, *args, **kwargs):
         status_id = kwargs.get('pk')
-        r = redis.StrictRedis(host='localhost', port=6379, db=0)
-        try:
-            if r.get(f'status_{status_id}'):
-                unpacked_status = pickle.loads(r.get(f'status_{status_id}'))
-                form = StatusForm(instance=unpacked_status)
-            else:
-                status = Status.objects.get(id=status_id)
-                pickled_status = pickle.dumps(status)
-                r.set(f'status_{status_id}', pickled_status)
-                form = StatusForm(instance=status)
-        except redis.ConnectionError:
-            status = Status.objects.get(id=status_id)
-            form = StatusForm(instance=status)
+        status = Status.objects.get(id=status_id)
+        form = StatusForm(instance=status)
         return render(
             request,
             'statuses/update.html',

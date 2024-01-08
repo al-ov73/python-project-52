@@ -5,6 +5,11 @@ from django.views.generic import UpdateView, CreateView
 from django.views import View
 from django.utils.translation import gettext as _
 
+import redis
+import pickle
+import telepot
+
+from task_manager import settings
 from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.models import Task
 from task_manager.tasks.filters import TaskFilter
@@ -49,6 +54,9 @@ class TaskFormCreateView(LoginRequiredMixin, CreateView):
             messages.add_message(
                 request, messages.SUCCESS, _('Task created successfully')
             )
+            bot = telepot.Bot(token=settings.BOT_TOKEN)
+            msg = f"new task '{instance.name}' created"
+            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg)
             return redirect('tasks')
         messages.add_message(
             request, messages.SUCCESS, _('Enter correct data')
@@ -87,8 +95,19 @@ class TaskFormEditView(LoginRequiredMixin, UpdateView):
 class TaskView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         task_id = kwargs.get('pk')
-        task = Task.objects.get(pk=task_id)
-        labels = task.labels.all()
+        r = redis.StrictRedis(host='localhost', port=6379, db=0)
+        try:
+            if r.get(f'task_{task_id}'):
+                task = pickle.loads(r.get(f'task_{task_id}'))
+                labels = task.labels.all()
+            else:
+                task = Task.objects.get(pk=task_id)
+                pickled_task = pickle.dumps(task)
+                r.set(f'task_{task_id}', pickled_task)
+                labels = task.labels.all()
+        except redis.ConnectionError:
+            task = Task.objects.get(pk=task_id)
+            labels = task.labels.all()
         return render(request, 'tasks/show.html', context={
             'task': task,
             'labels': labels,
