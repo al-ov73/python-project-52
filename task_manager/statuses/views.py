@@ -46,8 +46,9 @@ class StatusFormCreateView(LoginRequiredMixin, CreateView):
                 _('Status created successfully')
             )
             bot = telepot.Bot(token=settings.BOT_TOKEN)
-            msg = f"new status created"
-            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg, parse_mode='MARKDOWN')
+            msg = f"new status '{request.POST.get('name')}' created"
+            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg,
+                            parse_mode='MARKDOWN')
             return redirect('statuses')
         messages.add_message(
             request,
