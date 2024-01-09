@@ -22,9 +22,10 @@ class HomePageView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        bot = telepot.Bot(token=settings.BOT_TOKEN)
-        msg = f"Someone came to your site"
-        bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg)
+        if settings.BOT_TOKEN:
+            bot = telepot.Bot(token=settings.BOT_TOKEN)
+            msg = f"Someone came to your site"
+            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg)
         return render(request, self.template_name, context)
 
     def get_context_data(self, **kwargs):
