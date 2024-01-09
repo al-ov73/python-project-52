@@ -54,9 +54,10 @@ class TaskFormCreateView(LoginRequiredMixin, CreateView):
             messages.add_message(
                 request, messages.SUCCESS, _('Task created successfully')
             )
-            bot = telepot.Bot(token=settings.BOT_TOKEN)
-            msg = f"new task '{instance.name}' created"
-            bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg)
+            if settings.BOT_TOKEN:
+                bot = telepot.Bot(token=settings.BOT_TOKEN)
+                msg = f"new task '{instance.name}' created"
+                bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg)
             return redirect('tasks')
         messages.add_message(
             request, messages.SUCCESS, _('Enter correct data')
