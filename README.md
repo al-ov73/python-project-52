@@ -18,7 +18,7 @@ https://task-manager-a32f.onrender.com/
 Веб-приложение подключено к коллектору ошибок 
 <a href="https://rollbar.com/">Rollbar</a>
 
-Чтобы локально запустить проект, выполните следующие команды:
+Чтобы локально запустить проект через **Poetry**, выполните следующие команды:
 ```commandline
 git clone git@github.com:al-ov73/python-project-52.git
 cd python-project-52
@@ -39,4 +39,9 @@ BOT_CHAT_ID=
 poetry shell
 poetry install
 make start
+```
+Запуск через **Docker**
+```commandline
+docker pull alov73/task_manager:latest
+docker run -p 8000:8000 alov73/task_manager:latest
 ```
