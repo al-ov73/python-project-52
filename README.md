@@ -22,6 +22,20 @@ https://task-manager-a32f.onrender.com/
 ```commandline
 git clone git@github.com:al-ov73/python-project-52.git
 cd python-project-52
+```
+Создайте в корневой директории файл .env со следующими переменными и присвойте им значения
+```commandline
+DATABASE_URL=
+SECRET_KEY=
+DJANGO_LOG_LEVEL=
+ROLLBAR_ACCESS_TOKEN=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+BOT_TOKEN=
+BOT_CHAT_ID=
+```
+далее введите следующие команды:
+```
 poetry shell
 poetry install
 make start
