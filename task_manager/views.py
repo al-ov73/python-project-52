@@ -24,7 +24,7 @@ class HomePageView(TemplateView):
         context = self.get_context_data()
         if settings.BOT_TOKEN:
             bot = telepot.Bot(token=settings.BOT_TOKEN)
-            msg = f"Someone came to your site"
+            msg = "Someone came to your site"
             bot.sendMessage(chat_id=settings.BOT_CHAT_ID, text=msg)
         return render(request, self.template_name, context)
 
