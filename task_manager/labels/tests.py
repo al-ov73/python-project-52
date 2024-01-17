@@ -1,8 +1,20 @@
 from django.test import TestCase
 
+import time
+from selenium import webdriver as wd
+
 from task_manager.labels.models import Label
 from task_manager.tests import create_and_login_user
 
+url = "http://127.0.0.1:8000/"
+
+options = wd.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+options.add_argument(
+    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
+
+browser = wd.Chrome(options=options)
 
 class TestLabels(TestCase):
 
@@ -18,6 +30,10 @@ class TestLabels(TestCase):
         create_and_login_user(self)
         response = self.client.get('/labels/')
         self.assertEquals(response.status_code, 200)
+
+        browser.get(url)
+        time.sleep(1)
+        browser.save_screenshot("media/screenshots/1.png")
 
     def test_create_label(self):
 
