@@ -1,20 +1,16 @@
+import os
 from django.test import TestCase
 
 import time
 from selenium import webdriver as wd
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.relative_locator import locate_with
+
 
 from task_manager.labels.models import Label
 from task_manager.tests import create_and_login_user
 
-url = "http://127.0.0.1:8000/"
 
-options = wd.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--disable-gpu")
-options.add_argument(
-    "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-
-browser = wd.Chrome(options=options)
 
 class TestLabels(TestCase):
 
@@ -25,15 +21,46 @@ class TestLabels(TestCase):
         'name': 'updated_name',
     }
 
+    def test_ui_with_selenium(self):
+
+        url = "http://127.0.0.1:8000/"
+
+        options = wd.ChromeOptions()
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+        options.add_argument(f"--window-size=1920,1080")
+
+        browser = wd.Chrome(options=options)
+
+        browser.get(url)
+        assert "Метки" not in browser.page_source  
+        enter_button = browser.find_element(By.LINK_TEXT, "Вход")
+        enter_button.click()  
+        login_input = browser.find_element(By.NAME, "username")
+        login_input.send_keys(os.getenv('USERNAME'))
+        pass_input = browser.find_element(By.NAME, "password")
+        pass_input.send_keys(os.getenv('PASSWORD'))
+        login_button = browser.find_element(locate_with(By.TAG_NAME, "button").below(pass_input))
+        login_button.click()
+        label_button = browser.find_element(By.LINK_TEXT, "Метки")
+        label_button.click()
+        label_button = browser.find_element(By.LINK_TEXT, "Создать метку")
+        label_button.click()
+        label_input = browser.find_element(By.NAME, "name")
+        label_input.send_keys('testlabel')
+        label_button = browser.find_element(By.CSS_SELECTOR, '[value="Создать"]')
+        label_button.click()
+        browser.save_screenshot("media/screenshots/create_label.png")
+        assert "testlabel" in browser.page_source
+        assert "Метка успешно создана" in browser.page_source
+        button = browser.find_element(By.XPATH, "/html/body/main/div/table/tbody/tr[-1]/td[-1]/form[-1]/input[-1]")
+        button.click()
+
     def test_is_ok_index(self):
 
         create_and_login_user(self)
         response = self.client.get('/labels/')
         self.assertEquals(response.status_code, 200)
-
-        browser.get(url)
-        time.sleep(1)
-        browser.save_screenshot("media/screenshots/1.png")
 
     def test_create_label(self):
 
