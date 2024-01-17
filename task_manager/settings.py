@@ -145,7 +145,7 @@ if 'test' in sys.argv:
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'mydatabase'
     }
-  
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
