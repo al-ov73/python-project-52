@@ -1,0 +1,47 @@
+services:
+
+  django:
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    container_name: django
+    network_mode: host
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+
+  postgres:
+    image: postgres:alpine
+    container_name: postgres
+    restart: always
+    env_file:
+      - .env
+
+  redis:
+    image: redis:alpine
+    hostname: redis
+    environment:
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+        - PGUSER=postgres
+        - PGHOST=postgres
+        - PGDATABASE=postgres
+        - PGPASSWORD=postgres_password
+        - PGPORT=5432
+
+  celery-worker:
+    build: .
+    container_name: celery-worker
+    entrypoint: celery
+    restart: always
+    env_file:
+      - .env
+    command: -A task_manager worker --loglevel=DEBUG
+    links:
+      - redis
+    depends_on:
+      - redis
