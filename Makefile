@@ -33,6 +33,7 @@ redis-stop:
 
 docker:
 	docker compose -f docker-compose.yml up
+#	docker compose -f docker-compose.yml exec django python manage.py migrate --noinput
 
 # docker compose -f docker-compose.yml build
 # docker compose -f docker-compose.yml up

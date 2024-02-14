@@ -1,7 +1,5 @@
-from django.conf.urls.static import static
 from django.urls import path
 
-from task_manager import settings
 from task_manager.users import views
 
 urlpatterns = [
@@ -26,8 +24,3 @@ urlpatterns = [
         name='users_delete'),
     path('', views.IndexView.as_view(), name='users'),
 ]
-
-if settings.LOCAL_DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-    )

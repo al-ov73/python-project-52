@@ -213,8 +213,6 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 BOT_URL = 'https://api.telegram.org/bot%s/' % BOT_TOKEN
 BOT_CHAT_ID = os.getenv('BOT_CHAT_ID')
 
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BOOTSTRAP5 = {
@@ -295,4 +293,3 @@ LOGGING = {
 if LOCAL_DEBUG:
     CELERY_BROKER_URL = "redis://redis:6379"
     CELERY_RESULT_BACKEND = "redis://redis:6379"
-
