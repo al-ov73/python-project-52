@@ -33,7 +33,7 @@ urlpatterns = [
     path('', views.HomePageView.as_view(), name='index'),
 ]
 
-if settings.LOCAL_DEBUG:
+if (settings.LOCAL_DEBUG) or (settings.DEBUG):
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )

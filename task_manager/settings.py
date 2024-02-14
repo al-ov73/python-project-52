@@ -30,13 +30,15 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
+
 LOCAL_DEBUG = 'LOCAL' in os.environ
 
 ALLOWED_HOSTS = [
     'webserver',
     '127.0.0.1',
     '0.0.0.0',
-    'localhost'
+    'localhost',
+    '[::1]',
 ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
@@ -190,8 +192,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'task_manager/templates/src/'
+STATIC_URL = '/static/'
+
+# use in development
 STATICFILES_DIRS = [BASE_DIR / 'task_manager/templates/src']
+
+if not DEBUG:
+    # use in production
+    STATIC_ROOT = os.path.join(BASE_DIR, 'task_manager/templates/src')
+
+    STATICFILES_STORAGE = (
+        'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -200,12 +212,7 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 BOT_URL = 'https://api.telegram.org/bot%s/' % BOT_TOKEN
 BOT_CHAT_ID = os.getenv('BOT_CHAT_ID')
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    STATICFILES_STORAGE = (
-        'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    )
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -284,8 +291,7 @@ LOGGING = {
 }
 
 # Celery settings
-# if LOCAL_DEBUG:
-#     CELERY_BROKER_URL = "redis://localhost:6379"
-#     CELERY_RESULT_BACKEND = "redis://localhost:6379"
-CELERY_BROKER_URL = "redis://redis:6379/0"
-CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+if LOCAL_DEBUG:
+    CELERY_BROKER_URL = "redis://redis:6379"
+    CELERY_RESULT_BACKEND = "redis://redis:6379"
+

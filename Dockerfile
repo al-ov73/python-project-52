@@ -10,7 +10,7 @@ ENV PYTHONFAULTHANDLER=1 \
     POETRY_CACHE_DIR='/var/cache/pypoetry' \
     PATH="$PATH:/root/.local/bin"
 
-WORKDIR /usr/local/src/python-project-52/
+WORKDIR /app
 
 COPY . .
 
@@ -20,5 +20,7 @@ RUN apk add --no-cache \
 RUN curl -sSL https://install.python-poetry.org | python3 - && poetry --version
 
 RUN poetry install
+
+RUN chmod -R 777 ./
 
 CMD poetry run python manage.py runserver 0.0.0.0:8000

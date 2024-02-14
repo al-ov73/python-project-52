@@ -1,3 +1,10 @@
+version: '3.8'
+
+volumes:
+  pgdata:
+  static1:
+  media:
+
 services:
 
   django:
@@ -9,10 +16,16 @@ services:
     network_mode: host
     env_file:
       - .env
+    volumes:
+      - ./:/app
+      - static1:/app/static
+      - media:/app/media
     depends_on:
       - postgres
       - redis
-    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate --fake &&
+                    python manage.py runserver 0.0.0.0:8000"
 
   postgres:
     image: postgres:alpine
@@ -20,6 +33,8 @@ services:
     restart: always
     env_file:
       - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
 
   redis:
     image: redis:alpine
@@ -40,6 +55,17 @@ services:
     restart: always
     env_file:
       - .env
+    environment:
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+        - PGUSER=postgres
+        - PGHOST=postgres
+        - PGDATABASE=postgres
+        - PGPASSWORD=postgres_password
+        - PGPORT=5432
+    volumes:
+      - ./:/app
+      - media:/app/media
     command: -A task_manager worker --loglevel=DEBUG
     links:
       - redis

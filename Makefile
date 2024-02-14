@@ -13,7 +13,7 @@ locale2:
 
 migrate:
 	python manage.py makemigrations
-	python manage.py migrate --fake-initial
+	python manage.py migrate
 
 lint:
 	poetry run flake8 task_manager
@@ -29,6 +29,10 @@ redis-start:
 
 redis-stop:
 	sudo server redis-server stop
+
+
+docker:
+	docker compose -f docker-compose.yml up
 
 # docker compose -f docker-compose.yml build
 # docker compose -f docker-compose.yml up
