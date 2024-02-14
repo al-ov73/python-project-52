@@ -194,8 +194,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# use in development
-STATICFILES_DIRS = [BASE_DIR / 'task_manager/templates/src']
+if DEBUG:
+    # use in development
+    STATICFILES_DIRS = [BASE_DIR / 'task_manager/templates/src']
 
 if not DEBUG:
     # use in production
