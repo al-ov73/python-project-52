@@ -39,14 +39,16 @@ services:
   redis:
     image: redis:alpine
     hostname: redis
-    environment:
-        - REDIS_HOST=redis
-        - REDIS_PORT=6379
-        - PGUSER=postgres
-        - PGHOST=postgres
-        - PGDATABASE=postgres
-        - PGPASSWORD=postgres_password
-        - PGPORT=5432
+#    environment:
+#        - REDIS_HOST=redis
+#        - REDIS_PORT=6379
+#        - PGUSER=postgres
+#        - PGHOST=postgres
+#        - PGDATABASE=postgres
+#        - PGPASSWORD=postgres_password
+#        - PGPORT=5432
+    env_file:
+      - .env
 
   celery-worker:
     build: .
