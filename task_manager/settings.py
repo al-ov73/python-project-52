@@ -202,9 +202,9 @@ if not DEBUG:
     # use in production
     STATIC_ROOT = os.path.join(BASE_DIR, 'task_manager/templates/src')
 
-    STATICFILES_STORAGE = (
-        'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    )
+    # STATICFILES_STORAGE = (
+    #     'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
